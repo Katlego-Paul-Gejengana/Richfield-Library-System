@@ -98,3 +98,46 @@ input[type="submit"] {
 input[type="submit"]:hover {
   background-color: #2a5298;
 }
+
+/* Slideshow */
+.slideshow {
+width: 80%;
+max-width: 600px;
+position: relative;
+border-radius: 10px;
+overflow: hidden;
+box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+.slides img {
+width: 100%;
+display: none;
+}
+
+.slides img.active {
+display: block;
+}
+
+.buttons {
+position: absolute;
+top: 50%;
+width: 100%;
+display: flex;
+justify-content: space-between;
+transform: translateY(-50%);
+}
+
+button {
+background: rgba(0,0,0,0.5);
+color: white;
+border: none;
+padding: 10px;
+cursor: pointer;
+border-radius: 5px;
+}
+
+button:hover {
+background: rgba(0,0,0,0.7);
+}
+
+

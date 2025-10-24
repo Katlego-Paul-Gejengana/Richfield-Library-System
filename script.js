@@ -1,5 +1,5 @@
 
-
+// Login Page
 document.addEventListener("DOMContentLoaded", () => {
   const loginForm = document.getElementById("loginForm");
 
@@ -23,3 +23,27 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+// Slideshow
+const slides = document.querySelectorAll('.slides img');
+let index = 0;
+
+document.getElementById('next').addEventListener('click', () => {
+slides[index].classList.remove('active');
+index = (index + 1) % slides.length;
+slides[index].classList.add('active');
+});
+
+document.getElementById('prev').addEventListener('click', () => {
+slides[index].classList.remove('active');
+index = (index - 1 + slides.length) % slides.length;
+slides[index].classList.add('active');
+});
+
+// Auto play every 3 seconds
+setInterval(() => {
+slides[index].classList.remove('active');
+index = (index + 1) % slides.length;
+slides[index].classList.add('active');
+}, 3000);
+

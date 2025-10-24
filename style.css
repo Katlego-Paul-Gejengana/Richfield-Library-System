@@ -237,7 +237,7 @@ main {
 }
 
 /* Responsive adjustments */
-@media (max-width: 700px) {
+/* @media (max-width: 700px) {
   main {
     padding: 20px;
   }
@@ -250,4 +250,5 @@ main {
     grid-template-columns: 1fr 1fr;
   }
 }
+*/
 

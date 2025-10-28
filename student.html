@@ -1,84 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <title>Richfield Library System</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Student Dashboard - Richfield Library System</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <header>
-    <div class="header-left">
-      <img src="" alt="Richfield Library Logo" class="logo">
-      <h1>Richfield Library System</h1>
-    </div>
 
-    <div class="header-right">
-      <input type="text" placeholder="Search for books..." class="search-bar">
-      <a href="index.html" class="button">Logout</a>
+<body class="bg-[#0a1f44] text-white flex flex-col min-h-screen">
+
+  <!-- Header -->
+  <header class="bg-blue-800 px-6 py-4 flex flex-col md:flex-row items-center justify-between shadow-md">
+    <div class="flex items-center space-x-4 mb-3 md:mb-0">
+      <img src="logo.png" alt="Richfield Library Logo" class="w-12 h-12 object-contain">
+      <h1 class="text-2xl font-bold">Richfield Library System</h1>
+    </div>
+    <div class="flex items-center gap-3 w-full md:w-auto">
+      <input type="text" placeholder="Search for books..."
+        class="w-full md:w-64 px-4 py-2 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-400">
+      <a href="index.html"
+        class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg font-semibold transition text-white">Logout</a>
     </div>
   </header>
 
-  <div class="container">
-    <h2>Welcome aboard!!</h2>
-  </div>
+  <!-- Welcome -->
+  <section class="px-6 py-6 text-center">
+    <h2 class="text-3xl font-bold mb-2">Welcome aboard!</h2>
+    <p class="text-gray-300">Explore books, check popular titles, and discover library resources.</p>
+  </section>
 
-  <div class="slideshow">
-    <div class="slides">
-      <img src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170" class="active" alt="Slide 1">
-      <img src="https://images.unsplash.com/photo-1517770413964-df8ca61194a6?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2070" alt="Slide 2">
-      <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1198" alt="Slide 3">
-      <img src="https://images.unsplash.com/photo-1513185041617-8ab03f83d6c5?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170" alt="Slide 4">
-      <img src="https://www.istockphoto.com/photo/a-librarys-quiet-embrace-rows-of-books-lining-wooden-shelves-gm2167740181-587791337?utm_source=unsplash&utm_medium=affiliate&utm_campaign=srp_photos_bottom&utm_content=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fbooks&utm_term=books%3A%3Alayout-below-fold-units-2%3Acontrol" alt="Slide 5">
+  <!-- Slideshow -->
+  <section class="relative max-w-5xl mx-auto px-6 mb-8">
+    <div class="relative overflow-hidden rounded-lg shadow-lg">
+      <div class="slides relative h-64 md:h-96 flex transition-transform duration-500">
+        <img
+          src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d?ixlib=rb-4.1.0&auto=format&fit=crop&q=80&w=1170"
+          class="w-full object-cover" alt="Slide 1">
+        <img
+          src="https://images.unsplash.com/photo-1517770413964-df8ca61194a6?ixlib=rb-4.1.0&auto=format&fit=crop&q=80&w=2070"
+          class="w-full object-cover hidden" alt="Slide 2">
+        <img
+          src="https://images.unsplash.com/photo-1512820790803-83ca734da794?ixlib=rb-4.1.0&auto=format&fit=crop&q=80&w=1198"
+          class="w-full object-cover hidden" alt="Slide 3">
+      </div>
+      <button id="prev"
+        class="absolute left-2 top-1/2 -translate-y-1/2 bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded-full">❮</button>
+      <button id="next"
+        class="absolute right-2 top-1/2 -translate-y-1/2 bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded-full">❯</button>
     </div>
+  </section>
+
+  <!-- Most Popular Books -->
+  <section class="px-6 mb-8">
+    <h3 class="text-2xl font-bold mb-4">Most Popular</h3>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+      <div class="card rounded-lg overflow-hidden shadow-md"><img
+          src="https://images1.penguinrandomhouse.com/cover/9780593548066" alt="Book 1"
+          class="w-full h-40 object-cover"></div>
+      <div class="card rounded-lg overflow-hidden shadow-md"><img
+          src="https://images2.penguinrandomhouse.com/cover/9780593490716" alt="Book 2"
+          class="w-full h-40 object-cover"></div>
+      <div class="card rounded-lg overflow-hidden shadow-md"><img
+          src="https://images1.penguinrandomhouse.com/cover/9780593133477" alt="Book 3"
+          class="w-full h-40 object-cover"></div>
+      <div class="card rounded-lg overflow-hidden shadow-md"><img
+          src="https://images2.penguinrandomhouse.com/cover/9780593310854" alt="Book 4"
+          class="w-full h-40 object-cover"></div>
+      <div class="card rounded-lg overflow-hidden shadow-md"><img
+          src="https://images1.penguinrandomhouse.com/cover/9780593466490" alt="Book 5"
+          class="w-full h-40 object-cover"></div>
+      <div class="card rounded-lg overflow-hidden shadow-md"><img
+          src="https://images2.penguinrandomhouse.com/cover/9780593241608" alt="Book 6"
+          class="w-full h-40 object-cover"></div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <!-- <section class="px-6 mb-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 text-center">
+
+    <div class="feat p-4 bg-[#1e2f5b] rounded-lg shadow hover:scale-105 transform transition">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mx-auto mb-2 text-blue-400" fill="none"
+        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M8 10h.01M12 10h.01M16 10h.01M9 16h6m2 0a2 2 0 002-2V8a2 2 0 00-2-2H7a2 2 0 00-2 2v6a2 2 0 002 2h10z" />
+      </svg>
+      <h4 class="font-semibold mb-1">Ask a Librarian</h4>
+      <p class="text-gray-300 text-sm">Get help locating items and research assistance.</p>
+    </div>
+
     
-  <div class="buttons">
-    <button id="prev">❮</button>
-    <button id="next">❯</button>
-  </div>
+    <div class="feat p-4 bg-[#1e2f5b] rounded-lg shadow hover:scale-105 transform transition">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mx-auto mb-2 text-yellow-400" fill="none"
+        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M12 2a9 9 0 00-9 9h18a9 9 0 00-9-9zM12 22a9 9 0 009-9H3a9 9 0 009 9z" />
+      </svg>
+      <h4 class="font-semibold mb-1">Innovations</h4>
+      <p class="text-gray-300 text-sm">Discover new services and digital resources.</p>
+    </div>
 
-    <main>
-    <section>
-      <h3 class="section-title">Most Popular</h3>
-      <div class="book-grid">
-        <div class="card"><img src="https://images1.penguinrandomhouse.com/cover/9780593548066" alt=""></div>
-        <div class="card"><img src="https://images2.penguinrandomhouse.com/cover/9780593490716" alt=""></div>
-        <div class="card"><img src="https://images1.penguinrandomhouse.com/cover/9780593133477" alt=""></div>
-        <div class="card"><img src="https://images2.penguinrandomhouse.com/cover/9780593310854" alt=""></div>
-        <div class="card"><img src="https://images1.penguinrandomhouse.com/cover/9780593466490" alt=""></div>
-        <div class="card"><img src="https://images2.penguinrandomhouse.com/cover/9780593241608" alt=""></div>
-        <div class="card"><img src="https://images2.penguinrandomhouse.com/cover/9781984820419" alt=""></div>
-        <div class="card"><img src="https://images1.penguinrandomhouse.com/cover/9780593230985" alt=""></div>
-      </div>
-    </section>
+   
+    <div class="feat p-4 bg-[#1e2f5b] rounded-lg shadow hover:scale-105 transform transition">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mx-auto mb-2 text-green-400" fill="none"
+        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+      </svg>
+      <h4 class="font-semibold mb-1">Join the Library</h4>
+      <p class="text-gray-300 text-sm">Register and start borrowing today.</p>
+    </div>
 
-    <section class="features" aria-label="Quick links">
-      <div class="feat">
-        <div class="icon">📚</div>
-        <h4>Ask a Librarian</h4>
-        <p>Get help locating items and research assistance.</p>
-      </div>
-      <div class="feat">
-        <div class="icon">💡</div>
-        <h4>Innovations</h4>
-        <p>Discover new services and digital resources.</p>
-      </div>
-      <div class="feat">
-        <div class="icon">📝</div>
-        <h4>Join the Library</h4>
-        <p>Register and start borrowing today.</p>
-      </div>
-      <div class="feat">
-        <div class="icon">🔎</div>
-        <h4>Help</h4>
-        <p>See FAQs and borrowing policies.</p>
-      </div>
-    </section>
-  </main>
+    <div class="feat p-4 bg-[#1e2f5b] rounded-lg shadow hover:scale-105 transform transition">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mx-auto mb-2 text-red-400" fill="none"
+        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 5.636a9 9 0 11-12.728 0M12 8v4M12 16h.01" />
+      </svg>
+      <h4 class="font-semibold mb-1">Help</h4>
+      <p class="text-gray-300 text-sm">See FAQs and borrowing policies.</p>
+    </div>
+  </section> -->
 
-  <footer>
+
+  <!-- Footer -->
+  <footer class="bg-[#0a1f44] text-gray-300 py-4 text-center">
     <p>&copy; 2025 Richfield Library System | Knowledge Nexus</p>
   </footer>
 
-  <script src="script.js"></script>
+  <!-- Optional: Simple slideshow script -->
+  <script>
+    const slides = document.querySelectorAll(".slides img");
+    let currentIndex = 0;
+
+    document.getElementById("next").addEventListener("click", () => {
+      slides[currentIndex].classList.add("hidden");
+      currentIndex = (currentIndex + 1) % slides.length;
+      slides[currentIndex].classList.remove("hidden");
+    });
+
+    document.getElementById("prev").addEventListener("click", () => {
+      slides[currentIndex].classList.add("hidden");
+      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+      slides[currentIndex].classList.remove("hidden");
+    });
+  </script>
+
 </body>
+
 </html>

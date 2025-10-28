@@ -1,32 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <title>Richfield Library System</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Admin Dashboard - Richfield Library System</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <header>
-    <div class="header-left">
-      <img src="" alt="Richfield Library Logo" class="logo">
-      <h1>Richfield Library System</h1>
-    </div>
 
-    <div class="header-right">
-      <input type="text" placeholder="Search users..." class="search-bar">
-      <a href="index.html" class="button">Logout</a>
+<body class="bg-[#0a1f44] text-white flex flex-col min-h-screen">
+
+  <!-- Header -->
+  <header class="bg-blue-800 px-6 py-4 flex flex-col md:flex-row items-center justify-between shadow-md">
+    <div class="flex items-center space-x-4 mb-3 md:mb-0">
+      <img src="logo.png" alt="Richfield Library Logo" class="w-12 h-12 object-contain">
+      <h1 class="text-2xl font-bold">Admin Dashboard</h1>
+    </div>
+    <div class="flex items-center gap-3 w-full md:w-auto">
+      <input type="text" placeholder="Search users or books..."
+        class="w-full md:w-64 px-4 py-2 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-400">
+      <a href="index.html"
+        class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg font-semibold transition text-white">Logout</a>
     </div>
   </header>
 
-  <div class="container">
-    <h2>Welcome! You now have Admin-level access.!</h2>
-    <a href="index.html" class="button">Logout</a>
-  </div>
+  <!-- Welcome -->
+  <section class="px-6 py-6 text-center">
+    <h2 class="text-3xl font-bold mb-2">Welcome, Admin!</h2>
+    <p class="text-gray-300">Manage users, librarians, library resources, and oversee all operations.</p>
+  </section>
 
-  <footer>
+  <!-- Features -->
+  <section class="px-6 mb-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 text-center">
+    <div class="feat p-4 bg-[#1e2f5b] rounded-lg shadow hover:scale-105 transform transition">
+      <div class="icon text-4xl mb-2">👤</div>
+      <h4 class="font-semibold mb-1">Manage Users</h4>
+      <p class="text-gray-300 text-sm">Add, edit, or remove students and librarians.</p>
+    </div>
+    <div class="feat p-4 bg-[#1e2f5b] rounded-lg shadow hover:scale-105 transform transition">
+      <div class="icon text-4xl mb-2">📚</div>
+      <h4 class="font-semibold mb-1">Manage Books</h4>
+      <p class="text-gray-300 text-sm">Oversee the library catalog and book inventory.</p>
+    </div>
+    <div class="feat p-4 bg-[#1e2f5b] rounded-lg shadow hover:scale-105 transform transition">
+      <div class="icon text-4xl mb-2">📊</div>
+      <h4 class="font-semibold mb-1">Analytics</h4>
+      <p class="text-gray-300 text-sm">View library usage statistics and reports.</p>
+    </div>
+    <div class="feat p-4 bg-[#1e2f5b] rounded-lg shadow hover:scale-105 transform transition">
+      <div class="icon text-4xl mb-2">⚙️</div>
+      <h4 class="font-semibold mb-1">Settings</h4>
+      <p class="text-gray-300 text-sm">Configure library policies, notifications, and system preferences.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-[#0a1f44] text-gray-300 py-4 text-center">
     <p>&copy; 2025 Richfield Library System | Knowledge Nexus</p>
   </footer>
 
-  <script src="script.js"></script>
 </body>
+
 </html>

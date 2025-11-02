@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Books - Richfield Library System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-[#0a1f44] text-white min-h-screen flex flex-col">
+
+    <!-- Navbar -->
+    <nav class="bg-blue-800 shadow-md px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center space-x-3">
+            <img src="logo.png" alt="Logo" class="w-10 h-10">
+            <span class="text-xl font-bold">Richfield Library</span>
+        </div>
+        <div class="flex space-x-4 items-center">
+            <a href="AdminProfile.html" title="Profile" class="hover:text-gray-300"> Profile</a>
+            <a href="admin.html" class="hover:text-gray-300"> Dashboard</a>
+            <a href="index.html" class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded-lg">Logout</a>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="px-6 py-6 text-center">
+        <h2 class="text-3xl font-bold">Manage Books</h2>
+        <p class="text-gray-300">Add, edit, or remove books from the library catalog.</p>
+    </header>
+
+    <!-- Add Book Form -->
+    <section class="px-6 mb-8 max-w-3xl mx-auto">
+        <form id="addBookForm" class="flex flex-col md:flex-row gap-4 mb-4">
+            <input type="text" placeholder="Title" id="bookTitle" class="flex-1 px-3 py-2 rounded-lg text-gray-900"
+                required>
+            <input type="text" placeholder="Author" id="bookAuthor" class="flex-1 px-3 py-2 rounded-lg text-gray-900"
+                required>
+            <input type="text" placeholder="ISBN" id="bookISBN" class="flex-1 px-3 py-2 rounded-lg text-gray-900"
+                required>
+            <input type="number" placeholder="Copies" id="bookCopies" class="w-24 px-3 py-2 rounded-lg text-gray-900"
+                min="1" value="1" required>
+            <button type="submit" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg font-semibold">Add
+                Book</button>
+        </form>
+    </section>
+
+    <!-- Books Table -->
+    <section class="px-6 max-w-6xl mx-auto mb-12">
+        <input type="text" id="filterBooks" placeholder="Filter books..."
+            class="w-full md:w-1/2 mb-4 px-3 py-2 rounded-lg text-gray-900">
+
+        <div class="overflow-x-auto">
+            <table id="booksTable" class="w-full table-auto border-collapse border border-gray-700">
+                <thead>
+                    <tr class="bg-blue-800">
+                        <th class="border border-gray-700 px-3 py-2">Title</th>
+                        <th class="border border-gray-700 px-3 py-2">Author</th>
+                        <th class="border border-gray-700 px-3 py-2">ISBN</th>
+                        <th class="border border-gray-700 px-3 py-2">Copies</th>
+                        <th class="border border-gray-700 px-3 py-2">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Dynamic rows inserted via JS -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <footer class="bg-[#0a1f44] text-gray-300 py-4 text-center mt-auto">
+        <p>&copy; 2025 Richfield Library System</p>
+    </footer>
+
+    <script>
+        // Books data array
+        let books = [];
+
+        const booksTableBody = document.querySelector("#booksTable tbody");
+        const addBookForm = document.getElementById("addBookForm");
+        const filterBooks = document.getElementById("filterBooks");
+
+        function renderBooks() {
+            booksTableBody.innerHTML = "";
+            books.forEach((book, index) => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+          <td class="border border-gray-700 px-3 py-2">${book.title}</td>
+          <td class="border border-gray-700 px-3 py-2">${book.author}</td>
+          <td class="border border-gray-700 px-3 py-2">${book.isbn}</td>
+          <td class="border border-gray-700 px-3 py-2">${book.copies}</td>
+          <td class="border border-gray-700 px-3 py-2 space-x-2">
+            <button class="edit bg-yellow-500 hover:bg-yellow-600 px-2 py-1 rounded">Edit</button>
+            <button class="delete bg-red-500 hover:bg-red-600 px-2 py-1 rounded">Delete</button>
+          </td>
+        `;
+                booksTableBody.appendChild(row);
+
+                // Delete book
+                row.querySelector(".delete").addEventListener("click", () => {
+                    books.splice(index, 1);
+                    renderBooks();
+                });
+
+                // Edit book
+                row.querySelector(".edit").addEventListener("click", () => {
+                    const newTitle = prompt("Enter new title:", book.title);
+                    const newAuthor = prompt("Enter new author:", book.author);
+                    const newISBN = prompt("Enter new ISBN:", book.isbn);
+                    const newCopies = prompt("Enter new copies:", book.copies);
+                    if (newTitle && newAuthor && newISBN && newCopies) {
+                        books[index] = { title: newTitle, author: newAuthor, isbn: newISBN, copies: parseInt(newCopies) };
+                        renderBooks();
+                    }
+                });
+            });
+        }
+
+        // Add book
+        addBookForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const title = document.getElementById("bookTitle").value.trim();
+            const author = document.getElementById("bookAuthor").value.trim();
+            const isbn = document.getElementById("bookISBN").value.trim();
+            const copies = parseInt(document.getElementById("bookCopies").value);
+            if (title && author && isbn && copies) {
+                books.push({ title, author, isbn, copies });
+                renderBooks();
+                addBookForm.reset();
+            }
+        });
+
+        // Filter books
+        filterBooks.addEventListener("input", () => {
+            const term = filterBooks.value.toLowerCase();
+            const filtered = books.filter(book =>
+                book.title.toLowerCase().includes(term) ||
+                book.author.toLowerCase().includes(term) ||
+                book.isbn.toLowerCase().includes(term)
+            );
+            booksTableBody.innerHTML = "";
+            filtered.forEach((book, index) => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+          <td class="border border-gray-700 px-3 py-2">${book.title}</td>
+          <td class="border border-gray-700 px-3 py-2">${book.author}</td>
+          <td class="border border-gray-700 px-3 py-2">${book.isbn}</td>
+          <td class="border border-gray-700 px-3 py-2">${book.copies}</td>
+          <td class="border border-gray-700 px-3 py-2 space-x-2">
+            <button class="edit bg-yellow-500 hover:bg-yellow-600 px-2 py-1 rounded">Edit</button>
+            <button class="delete bg-red-500 hover:bg-red-600 px-2 py-1 rounded">Delete</button>
+          </td>
+        `;
+                booksTableBody.appendChild(row);
+                row.querySelector(".delete").addEventListener("click", () => {
+                    const originalIndex = books.indexOf(book);
+                    books.splice(originalIndex, 1);
+                    renderBooks();
+                });
+                row.querySelector(".edit").addEventListener("click", () => {
+                    const newTitle = prompt("Enter new title:", book.title);
+                    const newAuthor = prompt("Enter new author:", book.author);
+                    const newISBN = prompt("Enter new ISBN:", book.isbn);
+                    const newCopies = prompt("Enter new copies:", book.copies);
+                    if (newTitle && newAuthor && newISBN && newCopies) {
+                        const originalIndex = books.indexOf(book);
+                        books[originalIndex] = { title: newTitle, author: newAuthor, isbn: newISBN, copies: parseInt(newCopies) };
+                        renderBooks();
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>

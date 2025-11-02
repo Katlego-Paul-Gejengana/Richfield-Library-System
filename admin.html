@@ -10,6 +10,10 @@
       width: 24px;
       height: 24px;
     }
+
+    .clickable {
+      cursor: pointer;
+    }
   </style>
 </head>
 
@@ -94,13 +98,15 @@
 
   <!-- Dashboard Features -->
   <section class="px-6 mb-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 justify-center text-center">
-    <div class="feat p-4 bg-[#1e2f5b] rounded-lg shadow hover:scale-105 transform transition">
+    <div onclick="location.href='ManageUsers.html'"
+      class="feat p-4 bg-[#1e2f5b] rounded-lg shadow hover:scale-105 transform transition clickable">
       <div class="icon text-4xl mb-2">👤</div>
       <h4 class="font-semibold mb-1">Manage Users</h4>
       <p class="text-gray-300 text-sm">Edit, or remove students and librarians.</p>
     </div>
 
-    <div class="feat p-4 bg-[#1e2f5b] rounded-lg shadow hover:scale-105 transform transition">
+    <div onclick="location.href='ManageBooks.html'"
+      class="feat p-4 bg-[#1e2f5b] rounded-lg shadow hover:scale-105 transform transition clickable">
       <div class="icon text-4xl mb-2">📚</div>
       <h4 class="font-semibold mb-1">Manage Books</h4>
       <p class="text-gray-300 text-sm">Oversee the library catalog and book inventory.</p>

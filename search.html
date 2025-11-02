@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Advanced Book Search | Richfield Library System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-[#f9fafc] text-gray-900 flex flex-col min-h-screen">
+
+    <!-- Navbar -->
+    <nav class="bg-blue-900 text-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <img src="logo.png" alt="Richfield Library Logo" class="w-10 h-10 object-contain">
+                <h1 class="text-xl font-bold">Richfield Library System</h1>
+            </div>
+
+            <ul class="hidden md:flex space-x-6">
+                <li><a href="admin.html" class="hover:text-blue-300 transition">Dashboard</a></li>
+                <li><a href="search.html" class="text-blue-300 font-semibold">Search</a></li>
+                <li><a href="#" class="hover:text-blue-300 transition">Reports</a></li>
+                <li><a href="index.html"
+                        class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg font-semibold text-white">Logout</a>
+                </li>
+            </ul>
+
+            <button id="menu-btn" class="md:hidden text-2xl focus:outline-none">☰</button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden bg-blue-800 text-white flex flex-col space-y-2 py-4 px-6">
+        <a href="admin.html" class="hover:text-blue-300 transition">Dashboard</a>
+        <a href="search.html" class="text-blue-300 font-semibold">Search</a>
+        <a href="#" class="hover:text-blue-300 transition">Reports</a>
+        <a href="index.html"
+            class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg font-semibold text-white text-center">Logout</a>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-white shadow-md px-6 py-8 text-center">
+        <h2 class="text-3xl font-bold text-blue-900 mb-2">Search Books, Journals & Articles</h2>
+        <p class="text-gray-600">Find books, e-books, research journals, and academic materials available at Richfield
+            Library.</p>
+    </header>
+
+    <!-- Search Form -->
+    <main class="max-w-5xl mx-auto px-6 py-10 bg-white shadow-lg rounded-lg mt-8">
+        <form id="searchForm" class="space-y-6">
+
+            <!-- Search Input -->
+            <div class="flex flex-col md:flex-row gap-4 items-center">
+                <input type="text" id="searchInput" placeholder="Search by title, author, or keyword..."
+                    class="flex-1 px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                <button type="submit"
+                    class="bg-blue-700 hover:bg-blue-800 text-white font-semibold px-6 py-3 rounded-lg transition">Search</button>
+            </div>
+
+            <!-- Filters -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
+
+                <!-- Category -->
+                <div>
+                    <label class="block mb-1 text-gray-700 font-semibold">Category</label>
+                    <select
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none">
+                        <option>All</option>
+                        <option>Book</option>
+                        <option>Journal</option>
+                        <option>Thesis</option>
+                        <option>eBook</option>
+                        <option>Magazine</option>
+                    </select>
+                </div>
+
+                <!-- Subject -->
+                <div>
+                    <label class="block mb-1 text-gray-700 font-semibold">Subject</label>
+                    <select
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none">
+                        <option>All Subjects</option>
+                        <option>Computer Science</option>
+                        <option>Engineering</option>
+                        <option>Business</option>
+                        <option>Education</option>
+                        <option>Health Sciences</option>
+                    </select>
+                </div>
+
+                <!-- Publication Type -->
+                <div>
+                    <label class="block mb-1 text-gray-700 font-semibold">Publication Type</label>
+                    <select
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none">
+                        <option>All Types</option>
+                        <option>Peer Reviewed</option>
+                        <option>Open Access</option>
+                        <option>Textbook</option>
+                    </select>
+                </div>
+
+                <!-- Availability -->
+                <div>
+                    <label class="block mb-1 text-gray-700 font-semibold">Availability</label>
+                    <select
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none">
+                        <option>All</option>
+                        <option>Available</option>
+                        <option>Checked Out</option>
+                    </select>
+                </div>
+
+                <!-- Date Range -->
+                <div>
+                    <label class="block mb-1 text-gray-700 font-semibold">Publication Year</label>
+                    <input type="number" min="1900" max="2025" placeholder="From"
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none">
+                </div>
+
+                <div>
+                    <label class="block mb-1 text-gray-700 font-semibold">To</label>
+                    <input type="number" min="1900" max="2025" placeholder="To"
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none">
+                </div>
+
+            </div>
+        </form>
+    </main>
+
+    <!-- Results -->
+    <section class="max-w-5xl mx-auto px-6 py-10">
+        <h3 class="text-2xl font-semibold text-blue-900 mb-4">Search Results</h3>
+        <div id="resultsContainer" class="grid gap-4">
+            <p class="text-gray-500 text-center">No results yet. Start by searching above.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-white text-center py-4 mt-auto">
+        <p>&copy; 2025 Richfield Library System | Powered by Knowledge Nexus</p>
+    </footer>
+
+    <!-- Script -->
+    <script>
+        const menuBtn = document.getElementById("menu-btn");
+        const mobileMenu = document.getElementById("mobile-menu");
+        const form = document.getElementById("searchForm");
+        const resultsContainer = document.getElementById("resultsContainer");
+
+        menuBtn.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
+        });
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const query = document.getElementById("searchInput").value.trim();
+
+            if (query === "") {
+                resultsContainer.innerHTML = `<p class='text-red-500 text-center'>Please enter a search term.</p>`;
+                return;
+            }
+
+            // Mock results
+            const results = [
+                { title: "Modern Database Systems", author: "Dr. Alan Parker", year: "2023", status: "Available" },
+                { title: "Artificial Intelligence in Education", author: "Jane Doe", year: "2022", status: "Checked Out" },
+                { title: "Advanced Java Programming", author: "Samuel Nkosi", year: "2021", status: "Available" }
+            ];
+
+            resultsContainer.innerHTML = results.map(r => `
+        <div class="bg-white border border-gray-200 rounded-lg shadow p-4 hover:shadow-md transition">
+          <h4 class="text-lg font-semibold text-blue-800">${r.title}</h4>
+          <p class="text-gray-600">Author: ${r.author}</p>
+          <p class="text-gray-500 text-sm">Published: ${r.year}</p>
+          <span class="inline-block mt-2 px-3 py-1 rounded-full text-sm font-semibold ${r.status === 'Available' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}">${r.status}</span>
+        </div>
+      `).join('');
+        });
+    </script>
+
+</body>
+
+</html>

@@ -5,6 +5,12 @@
   <meta charset="UTF-8">
   <title>Admin Dashboard - Richfield Library System</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .icon {
+      width: 24px;
+      height: 24px;
+    }
+  </style>
 </head>
 
 <body class="bg-[#0a1f44] text-white flex flex-col min-h-screen">
@@ -16,21 +22,44 @@
         <!-- Left: Logo -->
         <div class="flex items-center space-x-3">
           <img src="logo.png" alt="Richfield Library Logo" class="w-10 h-10 object-contain">
-          <span class="text-xl font-bold">Richfield Library System</span>
+          <span class="text-xl font-bold">Richfield Library</span>
         </div>
 
-        <!-- Center: Nav Links (hidden on mobile) -->
-        <div class="hidden md:flex space-x-6">
-          <a href="#" class="hover:text-gray-200 transition">Users</a>
-          <a href="search.html" class="hover:text-gray-200 transition">Books</a>
-          <a href="#" class="hover:text-gray-200 transition">Settings</a>
+        <!-- Center: Icon Nav Links -->
+        <div class="hidden md:flex space-x-6 items-center">
+          <a href="AdminProfile.html" title="Profile" class="hover:text-gray-200 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+              stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M5.121 17.804A8.966 8.966 0 0112 15c2.21 0 4.21.8 5.879 2.121M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+          </a>
+
+          <a href="search.html" title="Search Books" class="hover:text-gray-200 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+              stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z" />
+            </svg>
+          </a>
+
+          <a href="#" title="Settings" class="hover:text-gray-200 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+              stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.591 1.002 1.724 1.724 0 012.3.2 1.724 1.724 0 01-.2 2.3 1.724 1.724 0 001.002 2.591c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.002 2.591 1.724 1.724 0 01-.2 2.3 1.724 1.724 0 01-2.3-.2 1.724 1.724 0 00-2.591 1.002c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.591-1.002 1.724 1.724 0 01-2.3.2 1.724 1.724 0 01.2-2.3 1.724 1.724 0 00-1.002-2.591c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.002-2.591 1.724 1.724 0 01-.2-2.3 1.724 1.724 0 012.3-.2 1.724 1.724 0 002.591-1.002z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+          </a>
         </div>
 
-        <!-- Right: Search & Logout -->
+        <!-- Right: Logout Icon -->
         <div class="hidden md:flex items-center space-x-4">
-          <a href="index.html"
-            class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold transition">
-            Logout
+          <a href="index.html" title="Logout" class="hover:text-gray-200 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+              stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1m0-10V5m0 6v1" />
+            </svg>
           </a>
         </div>
 
@@ -45,14 +74,10 @@
 
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="hidden bg-blue-900 md:hidden">
-      <div class="px-4 py-3 space-y-3">
-        <a href="#" class="block hover:text-gray-200">Users</a>
-        <a href="#" class="block hover:text-gray-200">Books</a>
-        <a href="#" class="block hover:text-gray-200">Reports</a>
-
-
-        <input type="text" placeholder="Search..."
-          class="w-full mt-3 px-3 py-2 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-400">
+      <div class="px-4 py-3 space-y-3 text-center">
+        <a href="AdminProfile.html" title="Profile" class="block hover:text-gray-200">👤 Profile</a>
+        <a href="search.html" title="Books" class="block hover:text-gray-200">📚 Books</a>
+        <a href="#" title="Settings" class="block hover:text-gray-200">⚙️ Settings</a>
         <a href="index.html"
           class="block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-center font-semibold transition">
           Logout
@@ -61,34 +86,32 @@
     </div>
   </nav>
 
-  <!-- Welcome -->
+  <!-- Welcome Section -->
   <section class="px-6 py-6 text-center">
     <h2 class="text-3xl font-bold mb-2">Welcome, Admin!</h2>
     <p class="text-gray-300">Manage users, librarians, library resources, and oversee all operations.</p>
   </section>
 
-  <!-- Features -->
-  <section class="px-6 mb-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 text-center">
+  <!-- Dashboard Features -->
+  <section class="px-6 mb-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 justify-center text-center">
     <div class="feat p-4 bg-[#1e2f5b] rounded-lg shadow hover:scale-105 transform transition">
       <div class="icon text-4xl mb-2">👤</div>
       <h4 class="font-semibold mb-1">Manage Users</h4>
-      <p class="text-gray-300 text-sm">Add, edit, or remove students and librarians.</p>
+      <p class="text-gray-300 text-sm">Edit, or remove students and librarians.</p>
     </div>
+
     <div class="feat p-4 bg-[#1e2f5b] rounded-lg shadow hover:scale-105 transform transition">
       <div class="icon text-4xl mb-2">📚</div>
       <h4 class="font-semibold mb-1">Manage Books</h4>
       <p class="text-gray-300 text-sm">Oversee the library catalog and book inventory.</p>
     </div>
+
     <div class="feat p-4 bg-[#1e2f5b] rounded-lg shadow hover:scale-105 transform transition">
       <div class="icon text-4xl mb-2">📊</div>
       <h4 class="font-semibold mb-1">Analytics</h4>
       <p class="text-gray-300 text-sm">View library usage statistics and reports.</p>
     </div>
-    <div class="feat p-4 bg-[#1e2f5b] rounded-lg shadow hover:scale-105 transform transition">
-      <div class="icon text-4xl mb-2">⚙️</div>
-      <h4 class="font-semibold mb-1">Settings</h4>
-      <p class="text-gray-300 text-sm">Configure library policies, notifications, and system preferences.</p>
-    </div>
+
   </section>
 
   <!-- Footer -->

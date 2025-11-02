@@ -18,7 +18,7 @@
             </div>
 
             <ul class="hidden md:flex space-x-6">
-                <li><a href="admin.html" class="hover:text-blue-300 transition">Dashboard</a></li>
+                <li><a href="#" id="dashboardLink" class="hover:text-blue-300 transition">Back</a></li>
                 <li><a href="search.html" class="text-blue-300 font-semibold">Search</a></li>
                 <li><a href="#" class="hover:text-blue-300 transition">Reports</a></li>
                 <li><a href="index.html"
@@ -32,7 +32,7 @@
 
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="hidden bg-blue-800 text-white flex flex-col space-y-2 py-4 px-6">
-        <a href="admin.html" class="hover:text-blue-300 transition">Dashboard</a>
+        <a href="#" id="mobileDashboardLink" class="hover:text-blue-300 transition">Back</a>
         <a href="search.html" class="text-blue-300 font-semibold">Search</a>
         <a href="#" class="hover:text-blue-300 transition">Reports</a>
         <a href="index.html"
@@ -49,7 +49,6 @@
     <!-- Search Form -->
     <main class="max-w-5xl mx-auto px-6 py-10 bg-white shadow-lg rounded-lg mt-8">
         <form id="searchForm" class="space-y-6">
-
             <!-- Search Input -->
             <div class="flex flex-col md:flex-row gap-4 items-center">
                 <input type="text" id="searchInput" placeholder="Search by title, author, or keyword..."
@@ -60,7 +59,6 @@
 
             <!-- Filters -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
-
                 <!-- Category -->
                 <div>
                     <label class="block mb-1 text-gray-700 font-semibold">Category</label>
@@ -74,7 +72,6 @@
                         <option>Magazine</option>
                     </select>
                 </div>
-
                 <!-- Subject -->
                 <div>
                     <label class="block mb-1 text-gray-700 font-semibold">Subject</label>
@@ -88,7 +85,6 @@
                         <option>Health Sciences</option>
                     </select>
                 </div>
-
                 <!-- Publication Type -->
                 <div>
                     <label class="block mb-1 text-gray-700 font-semibold">Publication Type</label>
@@ -100,7 +96,6 @@
                         <option>Textbook</option>
                     </select>
                 </div>
-
                 <!-- Availability -->
                 <div>
                     <label class="block mb-1 text-gray-700 font-semibold">Availability</label>
@@ -111,20 +106,17 @@
                         <option>Checked Out</option>
                     </select>
                 </div>
-
                 <!-- Date Range -->
                 <div>
                     <label class="block mb-1 text-gray-700 font-semibold">Publication Year</label>
                     <input type="number" min="1900" max="2025" placeholder="From"
                         class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none">
                 </div>
-
                 <div>
                     <label class="block mb-1 text-gray-700 font-semibold">To</label>
                     <input type="number" min="1900" max="2025" placeholder="To"
                         class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none">
                 </div>
-
             </div>
         </form>
     </main>
@@ -142,41 +134,37 @@
         <p>&copy; 2025 Richfield Library System | Powered by Knowledge Nexus</p>
     </footer>
 
-    <!-- Script -->
+    <!-- External Script -->
+    <script src="js/search.js"></script>
+
+    <!-- Dashboard Back Button + Mobile Menu Script -->
     <script>
+        // Fallback back function
+        function goBackOrDashboard(fallback = "dashboard.html") {
+            if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                window.location.href = fallback;
+            }
+        }
+
+        // Desktop and Mobile Back Buttons
+        document.getElementById("dashboardLink").addEventListener("click", (e) => {
+            e.preventDefault();
+            goBackOrDashboard();
+        });
+
+        document.getElementById("mobileDashboardLink").addEventListener("click", (e) => {
+            e.preventDefault();
+            goBackOrDashboard();
+        });
+
+        // Mobile menu toggle
         const menuBtn = document.getElementById("menu-btn");
         const mobileMenu = document.getElementById("mobile-menu");
-        const form = document.getElementById("searchForm");
-        const resultsContainer = document.getElementById("resultsContainer");
 
         menuBtn.addEventListener("click", () => {
             mobileMenu.classList.toggle("hidden");
-        });
-
-        form.addEventListener("submit", (e) => {
-            e.preventDefault();
-            const query = document.getElementById("searchInput").value.trim();
-
-            if (query === "") {
-                resultsContainer.innerHTML = `<p class='text-red-500 text-center'>Please enter a search term.</p>`;
-                return;
-            }
-
-            // Mock results
-            const results = [
-                { title: "Modern Database Systems", author: "Dr. Alan Parker", year: "2023", status: "Available" },
-                { title: "Artificial Intelligence in Education", author: "Jane Doe", year: "2022", status: "Checked Out" },
-                { title: "Advanced Java Programming", author: "Samuel Nkosi", year: "2021", status: "Available" }
-            ];
-
-            resultsContainer.innerHTML = results.map(r => `
-        <div class="bg-white border border-gray-200 rounded-lg shadow p-4 hover:shadow-md transition">
-          <h4 class="text-lg font-semibold text-blue-800">${r.title}</h4>
-          <p class="text-gray-600">Author: ${r.author}</p>
-          <p class="text-gray-500 text-sm">Published: ${r.year}</p>
-          <span class="inline-block mt-2 px-3 py-1 rounded-full text-sm font-semibold ${r.status === 'Available' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}">${r.status}</span>
-        </div>
-      `).join('');
         });
     </script>
 

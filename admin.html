@@ -10,31 +10,54 @@
       width: 24px;
       height: 24px;
     }
+
+    .clickable {
+      cursor: pointer;
+    }
   </style>
 </head>
 
 <body class="bg-[#0a1f44] text-white flex flex-col min-h-screen">
 
   <!-- Header -->
-  <header class="bg-blue-800 px-6 py-4 flex flex-col md:flex-row items-center justify-between shadow-md">
-    <div class="flex items-center space-x-4 mb-3 md:mb-0">
-      <img src="https://cdn.briefly.co.za/images/720/6b4cbb0e53c53f0a.jpeg?v=1" alt="Richfield Library Logo" class="w-12 h-12 object-contain">
+  <header class="bg-blue-800 px-6 py-4 flex items-center justify-between shadow-md">
+    <!-- Left: Logo + Title -->
+    <div class="flex items-center space-x-4">
+      <img src="https://cdn.briefly.co.za/images/720/6b4cbb0e53c53f0a.jpeg?v=1" alt="Richfield Library Logo"
+        class="w-12 h-12 object-contain">
       <h1 class="text-2xl font-bold">Admin Dashboard</h1>
     </div>
 
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden bg-blue-900 md:hidden">
-      <div class="px-4 py-3 space-y-3 text-center">
-        <a href="AdminProfile.html" title="Profile" class="block hover:text-gray-200">👤 Profile</a>
-        <a href="search.html" title="Books" class="block hover:text-gray-200">📚 Books</a>
-        <a href="#" title="Settings" class="block hover:text-gray-200">⚙️ Settings</a>
-        <a href="index.html"
-          class="block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-center font-semibold transition">
-          Logout
-        </a>
-      </div>
-    </div>
+    <!-- Right: Desktop Navigation -->
+    <nav class="hidden md:flex items-center space-x-6 text-white font-semibold">
+      <a href="AdminProfile.html" class="hover:text-gray-200 transition">👤 Profile</a>
+      <a href="search.html" class="hover:text-gray-200 transition">📚 Books</a>
+      <a href="#" class="hover:text-gray-200 transition">⚙️ Settings</a>
+      <a href="index.html"
+        class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold transition">
+        Logout
+      </a>
+    </nav>
+
+    <!-- Mobile Menu Button -->
+    <button id="mobile-menu-button"
+      class="md:hidden bg-blue-700 hover:bg-blue-600 px-3 py-2 rounded text-white text-lg">
+      ☰
+    </button>
   </header>
+
+  <!-- Mobile Dropdown Menu -->
+  <div id="mobile-menu" class="hidden bg-blue-900 md:hidden">
+    <div class="px-4 py-3 space-y-3 text-center">
+      <a href="AdminProfile.html" title="Profile" class="block hover:text-gray-200">👤 Profile</a>
+      <a href="search.html" title="Books" class="block hover:text-gray-200">📚 Books</a>
+      <a href="#" title="Settings" class="block hover:text-gray-200">⚙️ Settings</a>
+      <a href="index.html"
+        class="block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-center font-semibold transition">
+        Logout
+      </a>
+    </div>
+  </div>
 
   <!-- Welcome Section -->
   <section class="px-6 py-6 text-center">
@@ -44,13 +67,15 @@
 
   <!-- Dashboard Features -->
   <section class="px-6 mb-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 justify-center text-center">
-    <div class="feat p-4 bg-[#1e2f5b] rounded-lg shadow hover:scale-105 transform transition">
+    <div onclick="location.href='ManageUsers.html'"
+      class="feat p-4 bg-[#1e2f5b] rounded-lg shadow hover:scale-105 transform transition clickable">
       <div class="icon text-4xl mb-2">👤</div>
       <h4 class="font-semibold mb-1">Manage Users</h4>
-      <p class="text-gray-300 text-sm">Edit, or remove students and librarians.</p>
+      <p class="text-gray-300 text-sm">Edit or remove students and librarians.</p>
     </div>
 
-    <div class="feat p-4 bg-[#1e2f5b] rounded-lg shadow hover:scale-105 transform transition">
+    <div onclick="location.href='ManageBooks.html'"
+      class="feat p-4 bg-[#1e2f5b] rounded-lg shadow hover:scale-105 transform transition clickable">
       <div class="icon text-4xl mb-2">📚</div>
       <h4 class="font-semibold mb-1">Manage Books</h4>
       <p class="text-gray-300 text-sm">Oversee the library catalog and book inventory.</p>
@@ -61,7 +86,6 @@
       <h4 class="font-semibold mb-1">Analytics</h4>
       <p class="text-gray-300 text-sm">View library usage statistics and reports.</p>
     </div>
-
   </section>
 
   <!-- Footer -->

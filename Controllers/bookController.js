@@ -6,11 +6,11 @@ exports.addBook = async (req, res) => {
         const { title, author, isbn, copies } = req.body;
         const book = await Book.create({ title, author, isbn, copies });
 
-        // Notify all students
-        const students = await User.findAll({ where: { role: 'Student' } });
-        for (const student of students) {
+        // Notify all students and librarians
+        const users = await User.findAll({ where: { role: ['Student', 'Librarian'] } });
+        for (const user of users) {
             await Notification.create({
-                userId: student.id,
+                userId: user.id,
                 message: `A new book "${title}" has been added to the library.`,
                 sentDate: new Date()
             });
@@ -32,11 +32,11 @@ exports.deleteBook = async (req, res) => {
 
         await book.destroy();
 
-        // Notify all students
-        const students = await User.findAll({ where: { role: 'Student' } });
-        for (const student of students) {
+        // Notify all students and librarians
+        const users = await User.findAll({ where: { role: ['Student', 'Librarian'] } });
+        for (const user of users) {
             await Notification.create({
-                userId: student.id,
+                userId: user.id,
                 message: `The book "${book.title}" has been removed from the library.`,
                 sentDate: new Date()
             });

@@ -1,12 +1,14 @@
 const express = require('express');
 const router = express.Router();
-// Use correct case for cross-platform compatibility (Windows vs. Linux/Mac filesystems)
 const notificationController = require('../Controllers/notificationController');
 
-// POST /api/notifications
+// POST → send new notification
 router.post('/', notificationController.sendNotification);
 
-// GET /api/notifications/:userId
+// GET → get all notifications for a user
 router.get('/:userId', notificationController.getUserNotifications);
+
+// PUT → mark notification as read
+router.put('/:id/read', notificationController.markAsRead);
 
 module.exports = router;

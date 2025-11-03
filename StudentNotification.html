@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Notifications - Richfield Library System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body class="bg-[#0a1f44] text-white min-h-screen flex flex-col">
+
+    <!-- Navbar -->
+    <nav class="bg-blue-900 text-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <img src="https://cdn.briefly.co.za/images/720/6b4cbb0e53c53f0a.jpeg?v=1" alt="Richfield Library Logo"
+                    class="w-12 h-12 object-contain">
+                <h1 class="text-2xl font-bold">Richfield Library</h1>
+            </div>
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="Student.html" class="flex flex-col items-center hover:bg-blue-800 px-3 py-1 rounded-lg">
+                    <span class="material-icons">dashboard</span>
+                    <span class="text-xs mt-1">Dashboard</span>
+                </a>
+                <a href="StudentNotifications.html" class="flex flex-col items-center bg-blue-700 px-3 py-1 rounded-lg">
+                    <span class="material-icons">notifications</span>
+                    <span class="text-xs mt-1">Notifications</span>
+                </a>
+                <a href="index.html"
+                    class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg font-semibold text-white">
+                    Logout
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="px-6 py-6 text-center">
+        <h2 class="text-3xl font-bold">📢 Notifications</h2>
+        <p class="text-gray-300">Stay updated on new and removed books.</p>
+    </header>
+
+    <!-- Notifications List -->
+    <section class="px-6 max-w-4xl mx-auto flex-grow">
+        <div id="notificationsList" class="space-y-4"></div>
+    </section>
+
+    <footer class="bg-[#0a1f44] text-gray-300 py-4 text-center mt-auto">
+        <p>&copy; 2025 Richfield Library System</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        const userId = 1; // TODO: Replace with logged-in student’s actual ID (from session/localStorage)
+        const notificationsList = document.getElementById("notificationsList");
+
+        async function loadNotifications() {
+            try {
+                const response = await fetch(`/api/notifications/user/${userId}`);
+                const notifications = await response.json();
+
+                notificationsList.innerHTML = "";
+                if (notifications.length === 0) {
+                    notificationsList.innerHTML = `<p class="text-gray-400 text-center">No notifications yet.</p>`;
+                    return;
+                }
+
+                notifications.forEach(note => {
+                    const div = document.createElement("div");
+                    div.className = "bg-blue-800 p-4 rounded-xl shadow-md border border-blue-600 hover:bg-blue-700 transition";
+                    div.innerHTML = `
+            <div class="flex justify-between items-center">
+              <p class="text-white text-lg">${note.message}</p>
+              <span class="text-gray-300 text-sm">${new Date(note.createdAt).toLocaleString()}</span>
+            </div>
+          `;
+                    notificationsList.appendChild(div);
+                });
+            } catch (error) {
+                notificationsList.innerHTML = `<p class="text-red-400">Failed to load notifications.</p>`;
+            }
+        }
+
+        loadNotifications();
+    </script>
+</body>
+
+</html>

@@ -5,34 +5,84 @@
     <meta charset="UTF-8">
     <title>Admin Profile | Richfield Library System</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body class="bg-gray-100 flex flex-col min-h-screen">
 
     <!-- Navbar -->
-    <nav class="bg-blue-900 text-white shadow-md">
+    <nav class="bg-blue-900 text-white shadow-lg">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Logo -->
             <div class="flex items-center space-x-3">
-                <img src="logo.png" alt="Richfield Library Logo" class="w-10 h-10 object-contain">
-                <h1 class="text-xl font-bold">Richfield Library System</h1>
+                <img src="https://cdn.briefly.co.za/images/720/6b4cbb0e53c53f0a.jpeg?v=1" alt="Richfield Library Logo"
+                    class="w-12 h-12 object-contain">
+                <h1 class="text-2xl font-bold">Richfield Library System</h1>
             </div>
 
-            <ul class="hidden md:flex space-x-6 items-center">
-                <li><a href="Admin.html" class="hover:text-blue-300 transition">Dashboard</a></li>
-                <li><a href="index.html"
-                        class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg font-semibold text-white">Logout</a>
-                </li>
-            </ul>
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="admin.html"
+                    class="flex flex-col items-center hover:bg-blue-800 px-3 py-1 rounded-lg transition">
+                    <span class="material-icons">dashboard</span>
+                    <span class="text-xs mt-1">Dashboard</span>
+                </a>
+                <a href="ManageUsers.html"
+                    class="flex flex-col items-center hover:bg-blue-800 px-3 py-1 rounded-lg transition">
+                    <span class="material-icons">group</span>
+                    <span class="text-xs mt-1">Users</span>
+                </a>
+                <a href="ManageBooks.html"
+                    class="flex flex-col items-center hover:bg-blue-800 px-3 py-1 rounded-lg transition">
+                    <span class="material-icons">menu_book</span>
+                    <span class="text-xs mt-1">Books</span>
+                </a>
+                <a href="Analytics.html"
+                    class="flex flex-col items-center hover:bg-blue-800 px-3 py-1 rounded-lg transition">
+                    <span class="material-icons">analytics</span>
+                    <span class="text-xs mt-1">Analytics</span>
+                </a>
+                <a href="AdminProfile.html"
+                    class="flex flex-col items-center hover:bg-blue-800 px-3 py-1 rounded-lg transition">
+                    <span class="material-icons">account_circle</span>
+                    <span class="text-xs mt-1">Profile</span>
+                </a>
 
-            <button id="menu-btn" class="md:hidden text-2xl focus:outline-none">☰</button>
+                <!-- Logout -->
+                <a href="index.html"
+                    class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg font-semibold text-white">
+                    Logout
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="menu-btn" class="md:hidden text-3xl focus:outline-none">
+                <span class="material-icons">menu</span>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden bg-blue-800 text-white flex flex-col space-y-2 py-4 px-6">
+            <a href="admin.html" class="flex items-center space-x-2 hover:text-blue-300 transition">
+                <span class="material-icons">dashboard</span><span>Dashboard</span>
+            </a>
+            <a href="ManageUsers.html" class="flex items-center space-x-2 hover:text-blue-300 transition">
+                <span class="material-icons">group</span><span>Users</span>
+            </a>
+            <a href="ManageBooks.html" class="flex items-center space-x-2 hover:text-blue-300 transition">
+                <span class="material-icons">menu_book</span><span>Books</span>
+            </a>
+            <a href="Analytics.html" class="flex items-center space-x-2 hover:text-blue-300 transition">
+                <span class="material-icons">analytics</span><span>Analytics</span>
+            </a>
+            <a href="AdminProfile.html" class="flex items-center space-x-2 hover:text-blue-300 transition">
+                <span class="material-icons">account_circle</span><span>Profile</span>
+            </a>
+            <a href="index.html" class="flex items-center space-x-2 hover:text-blue-300 transition">
+                <span class="material-icons">logout</span><span>Logout</span>
+            </a>
         </div>
     </nav>
-
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden bg-blue-800 text-white flex flex-col space-y-2 py-4 px-6">
-        <a href="Admin.html" class="block hover:text-gray-200">Dashboard</a>
-        <a href="index.html" class="block hover:text-gray-200">Logout</a>
-    </div>
 
     <!-- Profile Page -->
     <header class="bg-white shadow-md px-6 py-8 text-center">
@@ -82,6 +132,7 @@
     </footer>
 
     <script>
+        // Mobile menu toggle
         const menuBtn = document.getElementById("menu-btn");
         const mobileMenu = document.getElementById("mobile-menu");
 
@@ -89,6 +140,7 @@
             mobileMenu.classList.toggle("hidden");
         });
 
+        // Profile form alert
         const profileForm = document.getElementById("profileForm");
         profileForm.addEventListener("submit", (e) => {
             e.preventDefault();

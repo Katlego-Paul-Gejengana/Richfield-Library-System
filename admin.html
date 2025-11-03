@@ -8,8 +8,9 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <style>
     .icon {
-      width: 24px;
-      height: 24px;
+      width: 48px;
+      /* increased icon size */
+      height: 48px;
     }
 
     .clickable {
@@ -32,29 +33,27 @@
 
       <!-- Desktop Menu -->
       <div class="hidden md:flex space-x-6 items-center">
-        <a href="Admin.html" class="flex flex-col items-center hover:bg-blue-800 px-3 py-1 rounded-lg transition">
+        <a href="Admin.html" class="flex flex-col items-center hover:bg-blue-800 px-3 py-2 rounded-lg transition">
           <span class="material-icons">dashboard</span>
-          <span class="text-xs mt-1">Dashboard</span>
+          <span class="text-sm mt-1">Dashboard</span>
         </a>
-        <a href="ManageUsers.html" class="flex flex-col items-center hover:bg-blue-800 px-3 py-1 rounded-lg transition">
+        <a href="ManageUsers.html" class="flex flex-col items-center hover:bg-blue-800 px-3 py-2 rounded-lg transition">
           <span class="material-icons">group</span>
-          <span class="text-xs mt-1">Users</span>
+          <span class="text-sm mt-1">Users</span>
         </a>
-        <a href="ManageBooks.html" class="flex flex-col items-center hover:bg-blue-800 px-3 py-1 rounded-lg transition">
+        <a href="ManageBooks.html" class="flex flex-col items-center hover:bg-blue-800 px-3 py-2 rounded-lg transition">
           <span class="material-icons">menu_book</span>
-          <span class="text-xs mt-1">Books</span>
+          <span class="text-sm mt-1">Books</span>
         </a>
-        <a href="Analytics.html" class="flex flex-col items-center hover:bg-blue-800 px-3 py-1 rounded-lg transition">
+        <a href="Analytics.html" class="flex flex-col items-center hover:bg-blue-800 px-3 py-2 rounded-lg transition">
           <span class="material-icons">analytics</span>
-          <span class="text-xs mt-1">Analytics</span>
+          <span class="text-sm mt-1">Analytics</span>
         </a>
         <a href="AdminProfile.html"
-          class="flex flex-col items-center hover:bg-blue-800 px-3 py-1 rounded-lg transition">
+          class="flex flex-col items-center hover:bg-blue-800 px-3 py-2 rounded-lg transition">
           <span class="material-icons">account_circle</span>
-          <span class="text-xs mt-1">Profile</span>
+          <span class="text-sm mt-1">Profile</span>
         </a>
-
-        <!-- Logout Button -->
         <a href="index.html" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg font-semibold text-white">
           Logout
         </a>
@@ -92,34 +91,35 @@
   <!-- Welcome Section -->
   <section class="px-6 py-6 text-center">
     <h2 class="text-3xl font-bold mb-2">Welcome, Admin!</h2>
-    <p class="text-gray-300">Manage users, librarians, library resources, and oversee all operations.</p>
+    <p class="text-gray-300 text-lg">Manage users, librarians, library resources, and oversee all operations.</p>
   </section>
 
   <!-- Dashboard Features -->
-  <section class="px-6 mb-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 justify-center text-center">
+  <section class="px-6 mb-12 flex flex-wrap justify-center gap-6 text-center">
     <div onclick="location.href='ManageUsers.html'"
-      class="feat p-4 bg-[#1e2f5b] rounded-lg shadow hover:scale-105 transform transition clickable">
-      <div class="icon text-4xl mb-2">👤</div>
-      <h4 class="font-semibold mb-1">Manage Users</h4>
-      <p class="text-gray-300 text-sm">Edit or remove students and librarians.</p>
+      class="feat p-8 w-64 bg-[#1e2f5b] rounded-xl shadow-lg hover:scale-105 transform transition clickable flex flex-col items-center">
+      <div class="icon text-5xl mb-4">👤</div>
+      <h4 class="font-semibold mb-2 text-lg">Manage Users</h4>
+      <p class="text-gray-300 text-base">Edit or remove students and librarians.</p>
     </div>
 
     <div onclick="location.href='ManageBooks.html'"
-      class="feat p-4 bg-[#1e2f5b] rounded-lg shadow hover:scale-105 transform transition clickable">
-      <div class="icon text-4xl mb-2">📚</div>
-      <h4 class="font-semibold mb-1">Manage Books</h4>
-      <p class="text-gray-300 text-sm">Oversee the library catalog and book inventory.</p>
+      class="feat p-8 w-64 bg-[#1e2f5b] rounded-xl shadow-lg hover:scale-105 transform transition clickable flex flex-col items-center">
+      <div class="icon text-5xl mb-4">📚</div>
+      <h4 class="font-semibold mb-2 text-lg">Manage Books</h4>
+      <p class="text-gray-300 text-base">Oversee the library catalog and book inventory.</p>
     </div>
 
-    <div class="feat p-4 bg-[#1e2f5b] rounded-lg shadow hover:scale-105 transform transition">
-      <div class="icon text-4xl mb-2">📊</div>
-      <h4 class="font-semibold mb-1">Analytics</h4>
-      <p class="text-gray-300 text-sm">View library usage statistics and reports.</p>
+    <div onclick="location.href='analytics.html'"
+      class="feat p-8 w-64 bg-[#1e2f5b] rounded-xl shadow-lg hover:scale-105 transform transition clickable flex flex-col items-center">
+      <div class="icon text-5xl mb-4">📊</div>
+      <h4 class="font-semibold mb-2 text-lg">Analytics</h4>
+      <p class="text-gray-300 text-base">View library usage statistics and reports.</p>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-[#0a1f44] text-gray-300 py-4 text-center">
+  <footer class="bg-[#0a1f44] text-gray-300 py-4 text-center mt-auto">
     <p>&copy; 2025 Richfield Library System | Knowledge Nexus</p>
   </footer>
 

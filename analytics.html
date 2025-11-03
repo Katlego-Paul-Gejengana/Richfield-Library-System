@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Analytics - Richfield Library System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body class="bg-[#0a1f44] text-white min-h-screen flex flex-col">
+
+    <!-- Navbar -->
+    <nav class="bg-blue-900 text-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Logo -->
+            <div class="flex items-center space-x-3">
+                <img src="https://cdn.briefly.co.za/images/720/6b4cbb0e53c53f0a.jpeg?v=1" alt="Richfield Library Logo"
+                    class="w-12 h-12 object-contain">
+                <h1 class="text-2xl font-bold">Richfield Library System</h1>
+            </div>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="admin.html"
+                    class="flex flex-col items-center hover:bg-blue-800 px-3 py-1 rounded-lg transition">
+                    <span class="material-icons">dashboard</span>
+                    <span class="text-xs mt-1">Dashboard</span>
+                </a>
+                <a href="ManageUsers.html"
+                    class="flex flex-col items-center hover:bg-blue-800 px-3 py-1 rounded-lg transition">
+                    <span class="material-icons">group</span>
+                    <span class="text-xs mt-1">Users</span>
+                </a>
+                <a href="ManageBooks.html"
+                    class="flex flex-col items-center hover:bg-blue-800 px-3 py-1 rounded-lg transition">
+                    <span class="material-icons">menu_book</span>
+                    <span class="text-xs mt-1">Books</span>
+                </a>
+                <a href="Analytics.html"
+                    class="flex flex-col items-center hover:bg-blue-800 px-3 py-1 rounded-lg transition">
+                    <span class="material-icons">analytics</span>
+                    <span class="text-xs mt-1">Analytics</span>
+                </a>
+                <a href="AdminProfile.html"
+                    class="flex flex-col items-center hover:bg-blue-800 px-3 py-1 rounded-lg transition">
+                    <span class="material-icons">account_circle</span>
+                    <span class="text-xs mt-1">Profile</span>
+                </a>
+                <!-- Logout Button -->
+                <a href="index.html"
+                    class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg font-semibold text-white">Logout</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="menu-btn" class="md:hidden text-3xl focus:outline-none">
+                <span class="material-icons">menu</span>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden bg-blue-800 text-white flex flex-col space-y-2 py-4 px-6">
+            <a href="admin.html" class="flex items-center space-x-2 hover:text-blue-300 transition">
+                <span class="material-icons">dashboard</span><span>Dashboard</span>
+            </a>
+            <a href="ManageUsers.html" class="flex items-center space-x-2 hover:text-blue-300 transition">
+                <span class="material-icons">group</span><span>Users</span>
+            </a>
+            <a href="ManageBooks.html" class="flex items-center space-x-2 hover:text-blue-300 transition">
+                <span class="material-icons">menu_book</span><span>Books</span>
+            </a>
+            <a href="Analytics.html" class="flex items-center space-x-2 hover:text-blue-300 transition">
+                <span class="material-icons">analytics</span><span>Analytics</span>
+            </a>
+            <a href="AdminProfile.html" class="flex items-center space-x-2 hover:text-blue-300 transition">
+                <span class="material-icons">account_circle</span><span>Profile</span>
+            </a>
+            <a href="index.html" class="flex items-center space-x-2 hover:text-blue-300 transition">
+                <span class="material-icons">logout</span><span>Logout</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Stats Section -->
+    <section class="px-6 py-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-blue-700 p-4 rounded-lg shadow-md">
+            <h2 class="text-sm text-gray-300">Total Users</h2>
+            <p class="text-2xl font-bold mt-2">1,245</p>
+        </div>
+        <div class="bg-blue-700 p-4 rounded-lg shadow-md">
+            <h2 class="text-sm text-gray-300">Active Users</h2>
+            <p class="text-2xl font-bold mt-2">875</p>
+        </div>
+        <div class="bg-blue-700 p-4 rounded-lg shadow-md">
+            <h2 class="text-sm text-gray-300">New Signups</h2>
+            <p class="text-2xl font-bold mt-2">48</p>
+        </div>
+        <div class="bg-blue-700 p-4 rounded-lg shadow-md">
+            <h2 class="text-sm text-gray-300">Returning Users</h2>
+            <p class="text-2xl font-bold mt-2">332</p>
+        </div>
+    </section>
+
+    <!-- Charts Section -->
+    <section class="px-6 py-6">
+        <div class="bg-blue-700 p-6 rounded-lg shadow-md">
+            <h2 class="text-xl font-bold mb-4">User Activity (Last 7 Days)</h2>
+            <canvas id="userChart" class="w-full h-64"></canvas>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#0a1f44] text-gray-300 py-4 text-center mt-auto">
+        <p>&copy; 2025 Richfield Library System | Knowledge Nexus</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile menu toggle
+        const menuBtn = document.getElementById("menu-btn");
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        menuBtn?.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
+        });
+
+        // Chart.js
+        const ctx = document.getElementById('userChart').getContext('2d');
+        const userChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                datasets: [{
+                    label: 'Active Users',
+                    data: [120, 150, 180, 200, 170, 220, 190],
+                    backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                    borderColor: 'rgba(59, 130, 246, 1)',
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: true, labels: { color: 'white' } }
+                },
+                scales: {
+                    x: { ticks: { color: 'white' }, grid: { color: 'rgba(255,255,255,0.1)' } },
+                    y: { ticks: { color: 'white' }, grid: { color: 'rgba(255,255,255,0.1)' } }
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>

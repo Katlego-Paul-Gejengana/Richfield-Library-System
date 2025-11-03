@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <title>Admin Dashboard - Richfield Library System</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <style>
     .icon {
       width: 24px;
@@ -19,45 +20,74 @@
 
 <body class="bg-[#0a1f44] text-white flex flex-col min-h-screen">
 
-  <!-- Header -->
-  <header class="bg-blue-800 px-6 py-4 flex items-center justify-between shadow-md">
-    <!-- Left: Logo + Title -->
-    <div class="flex items-center space-x-4">
-      <img src="https://cdn.briefly.co.za/images/720/6b4cbb0e53c53f0a.jpeg?v=1" alt="Richfield Library Logo"
-        class="w-12 h-12 object-contain">
-      <h1 class="text-2xl font-bold">Admin Dashboard</h1>
+  <!-- Navbar -->
+  <nav class="bg-blue-900 text-white shadow-lg">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <!-- Logo -->
+      <div class="flex items-center space-x-3">
+        <img src="https://cdn.briefly.co.za/images/720/6b4cbb0e53c53f0a.jpeg?v=1" alt="Richfield Library Logo"
+          class="w-12 h-12 object-contain">
+        <h1 class="text-2xl font-bold">Richfield Library System</h1>
+      </div>
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex space-x-6 items-center">
+        <a href="Admin.html" class="flex flex-col items-center hover:bg-blue-800 px-3 py-1 rounded-lg transition">
+          <span class="material-icons">dashboard</span>
+          <span class="text-xs mt-1">Dashboard</span>
+        </a>
+        <a href="ManageUsers.html" class="flex flex-col items-center hover:bg-blue-800 px-3 py-1 rounded-lg transition">
+          <span class="material-icons">group</span>
+          <span class="text-xs mt-1">Users</span>
+        </a>
+        <a href="ManageBooks.html" class="flex flex-col items-center hover:bg-blue-800 px-3 py-1 rounded-lg transition">
+          <span class="material-icons">menu_book</span>
+          <span class="text-xs mt-1">Books</span>
+        </a>
+        <a href="Analytics.html" class="flex flex-col items-center hover:bg-blue-800 px-3 py-1 rounded-lg transition">
+          <span class="material-icons">analytics</span>
+          <span class="text-xs mt-1">Analytics</span>
+        </a>
+        <a href="AdminProfile.html"
+          class="flex flex-col items-center hover:bg-blue-800 px-3 py-1 rounded-lg transition">
+          <span class="material-icons">account_circle</span>
+          <span class="text-xs mt-1">Profile</span>
+        </a>
+
+        <!-- Logout Button -->
+        <a href="index.html" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg font-semibold text-white">
+          Logout
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="menu-btn" class="md:hidden text-3xl focus:outline-none">
+        <span class="material-icons">menu</span>
+      </button>
     </div>
 
-    <!-- Right: Desktop Navigation -->
-    <nav class="hidden md:flex items-center space-x-6 text-white font-semibold">
-      <a href="AdminProfile.html" class="hover:text-gray-200 transition">👤 Profile</a>
-      <a href="search.html" class="hover:text-gray-200 transition">📚 Books</a>
-      <a href="#" class="hover:text-gray-200 transition">⚙️ Settings</a>
-      <a href="index.html"
-        class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold transition">
-        Logout
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden bg-blue-800 text-white flex flex-col space-y-2 py-4 px-6">
+      <a href="AdminDashboard.html" class="flex items-center space-x-2 hover:text-blue-300 transition">
+        <span class="material-icons">dashboard</span><span>Dashboard</span>
       </a>
-    </nav>
-
-    <!-- Mobile Menu Button -->
-    <button id="mobile-menu-button"
-      class="md:hidden bg-blue-700 hover:bg-blue-600 px-3 py-2 rounded text-white text-lg">
-      ☰
-    </button>
-  </header>
-
-  <!-- Mobile Dropdown Menu -->
-  <div id="mobile-menu" class="hidden bg-blue-900 md:hidden">
-    <div class="px-4 py-3 space-y-3 text-center">
-      <a href="AdminProfile.html" title="Profile" class="block hover:text-gray-200">👤 Profile</a>
-      <a href="search.html" title="Books" class="block hover:text-gray-200">📚 Books</a>
-      <a href="#" title="Settings" class="block hover:text-gray-200">⚙️ Settings</a>
-      <a href="index.html"
-        class="block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-center font-semibold transition">
-        Logout
+      <a href="ManageUsers.html" class="flex items-center space-x-2 hover:text-blue-300 transition">
+        <span class="material-icons">group</span><span>Users</span>
+      </a>
+      <a href="ManageBooks.html" class="flex items-center space-x-2 hover:text-blue-300 transition">
+        <span class="material-icons">menu_book</span><span>Books</span>
+      </a>
+      <a href="Analytics.html" class="flex items-center space-x-2 hover:text-blue-300 transition">
+        <span class="material-icons">analytics</span><span>Analytics</span>
+      </a>
+      <a href="AdminProfile.html" class="flex items-center space-x-2 hover:text-blue-300 transition">
+        <span class="material-icons">account_circle</span><span>Profile</span>
+      </a>
+      <a href="index.html" class="flex items-center space-x-2 hover:text-blue-300 transition">
+        <span class="material-icons">logout</span><span>Logout</span>
       </a>
     </div>
-  </div>
+  </nav>
 
   <!-- Welcome Section -->
   <section class="px-6 py-6 text-center">
@@ -95,10 +125,10 @@
 
   <!-- Script for Mobile Menu -->
   <script>
-    const mobileMenuButton = document.getElementById("mobile-menu-button");
+    const menuBtn = document.getElementById("menu-btn");
     const mobileMenu = document.getElementById("mobile-menu");
 
-    mobileMenuButton?.addEventListener("click", () => {
+    menuBtn?.addEventListener("click", () => {
       mobileMenu.classList.toggle("hidden");
     });
   </script>

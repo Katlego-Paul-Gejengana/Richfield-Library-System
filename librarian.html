@@ -5,40 +5,73 @@
   <meta charset="UTF-8">
   <title>Librarian Dashboard - Richfield Library System</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body class="bg-[#0a1f44] text-white min-h-screen flex flex-col">
 
-  <!-- Header -->
-  <header class="bg-blue-800 px-6 py-4 flex flex-col md:flex-row items-center justify-between shadow-md relative">
-    <div class="flex items-center space-x-4 mb-3 md:mb-0">
-      <img src="https://cdn.briefly.co.za/images/720/6b4cbb0e53c53f0a.jpeg?v=1" alt="Richfield Library Logo" class="w-12 h-12 object-contain">
-      <h1 class="text-2xl font-bold">Richfield Library System</h1>
-    </div>
+  <!-- Navbar -->
+  <nav class="bg-blue-900 text-white shadow-lg">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <!-- Logo -->
+      <div class="flex items-center space-x-3">
+        <img src="https://cdn.briefly.co.za/images/720/6b4cbb0e53c53f0a.jpeg?v=1" alt="Richfield Library Logo"
+          class="w-12 h-12 object-contain">
+        <h1 class="text-2xl font-bold">Richfield Library System</h1>
+      </div>
 
-    <!-- Desktop Nav -->
-    <nav class="hidden md:flex items-center space-x-6">
-      <a href="search.html" class="hover:text-blue-300 transition">Search Books</a>
-      <!-- Profile Icon -->
-      <a href="LibrarianProfile.html" class="hover:text-blue-300 transition">
-        <img src="user-icon.png" alt="Profile" class="w-8 h-8 rounded-full border-2 border-white">
-      </a>
-      <a href="index.html"
-        class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg font-semibold transition text-white">Logout</a>
-    </nav>
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex space-x-6 items-center">
+        <a href="Librarian.html" class="flex flex-col items-center hover:bg-blue-800 px-3 py-1 rounded-lg transition">
+          <span class="material-icons">dashboard</span>
+          <span class="text-xs mt-1">Dashboard</span>
+        </a>
+        <a href="search.html" class="flex flex-col items-center hover:bg-blue-800 px-3 py-1 rounded-lg transition">
+          <span class="material-icons">menu_book</span>
+          <span class="text-xs mt-1">Books</span>
+        </a>
+        <a href="LibrarianNotifications.html"
+          class="flex flex-col items-center hover:bg-blue-800 px-3 py-1 rounded-lg transition">
+          <span class="material-icons">notifications</span>
+          <span class="text-xs mt-1">Notifications</span>
+        </a>
+        <a href="LibrarianProfile.html"
+          class="flex flex-col items-center hover:bg-blue-800 px-3 py-1 rounded-lg transition">
+          <span class="material-icons">account_circle</span>
+          <span class="text-xs mt-1">Profile</span>
+        </a>
 
-    <!-- Mobile Hamburger -->
-    <div class="md:hidden absolute right-6 top-6">
-      <button id="hamburgerBtn" class="text-white text-2xl">&#9776;</button>
+        <!-- Logout Button -->
+        <a href="index.html" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg font-semibold text-white">
+          Logout
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="menu-btn" class="md:hidden text-3xl focus:outline-none">
+        <span class="material-icons">menu</span>
+      </button>
     </div>
 
     <!-- Mobile Menu -->
-    <div id="mobileMenu" class="hidden flex-col mt-4 bg-blue-900 w-full rounded-lg md:hidden">
-      <a href="search.html" class="block px-4 py-2 hover:bg-blue-700 transition">Search Books</a>
-      <a href="LibrarianProfile.html" class="block px-4 py-2 hover:bg-blue-700 transition">Profile</a>
-      <a href="index.html" class="block px-4 py-2 hover:bg-blue-700 transition">Logout</a>
+    <div id="mobile-menu" class="hidden bg-blue-800 text-white flex flex-col space-y-2 py-4 px-6">
+      <a href="Librarian.html" class="flex items-center space-x-2 hover:text-blue-300 transition">
+        <span class="material-icons">dashboard</span><span>Dashboard</span>
+      </a>
+      <a href="search.html" class="flex items-center space-x-2 hover:text-blue-300 transition">
+        <span class="material-icons">menu_book</span><span>Books</span>
+      </a>
+      <a href="LibrarianNotifications.html" class="flex items-center space-x-2 hover:text-blue-300 transition">
+        <span class="material-icons">notifications</span><span>Notifications</span>
+      </a>
+      <a href="LibrarianProfile.html" class="flex items-center space-x-2 hover:text-blue-300 transition">
+        <span class="material-icons">account_circle</span><span>Profile</span>
+      </a>
+      <a href="index.html" class="flex items-center space-x-2 hover:text-blue-300 transition">
+        <span class="material-icons">logout</span><span>Logout</span>
+      </a>
     </div>
-  </header>
+  </nav>
 
   <!-- Main Content -->
   <main class="flex-grow px-6 py-8">
@@ -117,15 +150,14 @@
 
   <!-- Scripts -->
   <script>
-    const hamburgerBtn = document.getElementById("hamburgerBtn");
-    const mobileMenu = document.getElementById("mobileMenu");
+    const menuBtn = document.getElementById("menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
 
-    hamburgerBtn.addEventListener("click", () => {
+    menuBtn.addEventListener("click", () => {
       mobileMenu.classList.toggle("hidden");
     });
   </script>
 
 </body>
-
 
 </html>

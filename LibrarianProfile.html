@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Librarian Profile | Richfield Library System</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body class="bg-[#f9fafc] text-gray-900 flex flex-col min-h-screen">
@@ -12,27 +13,67 @@
     <!-- Navbar -->
     <nav class="bg-blue-900 text-white shadow-lg">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Logo -->
             <div class="flex items-center space-x-3">
                 <img src="logo.png" alt="Richfield Library Logo" class="w-10 h-10 object-contain">
                 <h1 class="text-xl font-bold">Richfield Library System</h1>
             </div>
 
-            <ul class="hidden md:flex space-x-6 items-center">
-                <li><a href="Librarian.html" class="hover:text-blue-300 transition">Dashboard</a></li>
-                <li><a href="index.html"
-                        class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg font-semibold text-white">Logout</a>
-                </li>
-            </ul>
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="Librarian.html"
+                    class="flex flex-col items-center hover:bg-blue-800 px-3 py-1 rounded-lg transition">
+                    <span class="material-icons">dashboard</span>
+                    <span class="text-xs mt-1">Dashboard</span>
+                </a>
+                <a href="search.html"
+                    class="flex flex-col items-center hover:bg-blue-800 px-3 py-1 rounded-lg transition">
+                    <span class="material-icons">menu_book</span>
+                    <span class="text-xs mt-1">Books</span>
+                </a>
+                <a href="LibrarianNotifications.html"
+                    class="flex flex-col items-center hover:bg-blue-800 px-3 py-1 rounded-lg transition">
+                    <span class="material-icons">notifications</span>
+                    <span class="text-xs mt-1">Notifications</span>
+                </a>
+                <a href="LibrarianProfile.html"
+                    class="flex flex-col items-center hover:bg-blue-800 px-3 py-1 rounded-lg transition">
+                    <span class="material-icons">account_circle</span>
+                    <span class="text-xs mt-1">Profile</span>
+                </a>
 
-            <button id="menu-btn" class="md:hidden text-2xl focus:outline-none">☰</button>
+                <!-- Logout Button -->
+                <a href="index.html"
+                    class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg font-semibold text-white">
+                    Logout
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="menu-btn" class="md:hidden text-3xl focus:outline-none">
+                <span class="material-icons">menu</span>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden bg-blue-800 text-white flex flex-col space-y-2 py-4 px-6">
+            <a href="Librarian.html" class="flex items-center space-x-2 hover:text-blue-300 transition">
+                <span class="material-icons">dashboard</span><span>Dashboard</span>
+            </a>
+            <a href="Librarian-books.html" class="flex items-center space-x-2 hover:text-blue-300 transition">
+                <span class="material-icons">menu_book</span><span>Books</span>
+            </a>
+            <a href="Librarian-notifications.html" class="flex items-center space-x-2 hover:text-blue-300 transition">
+                <span class="material-icons">notifications</span><span>Notifications</span>
+            </a>
+            <a href="Librarian-profile.html" class="flex items-center space-x-2 hover:text-blue-300 transition">
+                <span class="material-icons">account_circle</span><span>Profile</span>
+            </a>
+            <a href="index.html" class="flex items-center space-x-2 hover:text-blue-300 transition">
+                <span class="material-icons">logout</span><span>Logout</span>
+            </a>
         </div>
     </nav>
-
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden bg-blue-800 text-white flex flex-col space-y-2 py-4 px-6">
-        <a href="Librarian.html" class="hover:text-blue-300 transition">Dashboard</a>
-        <a href="index.html" class="hover:text-blue-300 transition">Logout</a>
-    </div>
 
     <!-- Page Header -->
     <header class="bg-white shadow-md px-6 py-8 text-center">
@@ -43,42 +84,32 @@
     <!-- Profile Form -->
     <main class="max-w-3xl mx-auto px-6 py-10 bg-white shadow-lg rounded-lg mt-8">
         <form id="profileForm" class="space-y-6">
-            <!-- Full Name -->
             <div>
                 <label class="block mb-1 text-gray-700 font-semibold">Full Name</label>
                 <input type="text" placeholder="John Doe"
                     class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none">
             </div>
-
-            <!-- Employee ID -->
             <div>
                 <label class="block mb-1 text-gray-700 font-semibold">Employee ID</label>
                 <input type="text" placeholder="EMP12345"
                     class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none">
             </div>
-
-            <!-- Email -->
             <div>
                 <label class="block mb-1 text-gray-700 font-semibold">Email</label>
                 <input type="email" placeholder="librarian@example.com"
                     class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none">
             </div>
-
-            <!-- Phone -->
             <div>
                 <label class="block mb-1 text-gray-700 font-semibold">Phone Number</label>
                 <input type="tel" placeholder="+27 123 456 7890"
                     class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none">
             </div>
-
-            <!-- Password -->
             <div>
                 <label class="block mb-1 text-gray-700 font-semibold">Password</label>
                 <input type="password" placeholder="********"
                     class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none">
             </div>
 
-            <!-- Submit Button -->
             <div class="text-center">
                 <button type="submit"
                     class="bg-blue-700 hover:bg-blue-800 text-white font-semibold px-6 py-3 rounded-lg transition">

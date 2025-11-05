@@ -1,89 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <title>Richfield Library System</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>Librarian Dashboard - Richfield Library System</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
-<body>
-  <header>
-    <div class="header-left" style="display:flex; align-items:center;">
-      <img src="" alt="Richfield Library Logo" class="logo">
-      <h1>Richfield Library System</h1>
-    </div>
 
-    <div class="header-right" style="display:flex; gap:0.6rem; align-items:center;">
-      <input type="text" placeholder="Search books..." class="search-bar" id="searchBar">
-      <a href="index.html" class="button">Logout</a>
-    </div>
-  </header>
+<body class="bg-[#0a1f44] text-white min-h-screen flex flex-col">
 
-  <div class="container">
-    <h2>Welcome. You have been granted Librarian-level access</h2>
-
-    <br>
-    <br>
-    <br>
-    <div class="grid">
-      <!-- Add Book -->
-      <div>
-        <h3>Add a new book</h3>
-        <form id="addBookForm">
-          <input type="text" name="title" placeholder="Title" required />
-          <input type="text" name="author" placeholder="Author" required />
-          <input type="text" name="isbn" placeholder="ISBN" required />
-          <input type="number" name="copies" placeholder="Copies available" min="1" value="1" required />
-          <button type="submit">Add Book</button>
-          <div id="addBookFeedback" class="muted"></div>
-        </form>
-
-        <hr />
-
-        <!-- Creat student login -->
-        <h3>Create student login</h3>
-        <form id="createUserForm">
-          <input type="text" name="first_name" placeholder="First name" required />
-          <input type="text" name="last_name" placeholder="Last name" required />
-          <input type="email" name="email" placeholder="Email" required />
-          <input type="password" name="password" placeholder="Password" required />
-          <button type="submit">Create Student</button>
-          <div id="createUserFeedback" class="muted"></div>
-        </form>
+  <!-- Navbar -->
+  <nav class="bg-blue-900 text-white shadow-lg">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <!-- Logo -->
+      <div class="flex items-center space-x-3">
+        <img src="https://cdn.briefly.co.za/images/720/6b4cbb0e53c53f0a.jpeg?v=1" alt="Richfield Library Logo"
+          class="w-12 h-12 object-contain">
+        <h1 class="text-2xl font-bold">Richfield Library System</h1>
       </div>
 
-      <hr />
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex space-x-6 items-center">
+        <a href="Librarian.html" class="flex flex-col items-center hover:bg-blue-800 px-3 py-1 rounded-lg transition">
+          <span class="material-icons">dashboard</span>
+          <span class="text-xs mt-1">Dashboard</span>
+        </a>
+        <a href="search.html" class="flex flex-col items-center hover:bg-blue-800 px-3 py-1 rounded-lg transition">
+          <span class="material-icons">menu_book</span>
+          <span class="text-xs mt-1">Books</span>
+        </a>
+        <a href="LibrarianNotifications.html"
+          class="flex flex-col items-center hover:bg-blue-800 px-3 py-1 rounded-lg transition">
+          <span class="material-icons">notifications</span>
+          <span class="text-xs mt-1">Notifications</span>
+        </a>
+        <a href="LibrarianProfile.html"
+          class="flex flex-col items-center hover:bg-blue-800 px-3 py-1 rounded-lg transition">
+          <span class="material-icons">account_circle</span>
+          <span class="text-xs mt-1">Profile</span>
+        </a>
 
-      <!-- Books list -->
-      <div>
-        <h3>Available Books</h3>
-        <input id="filterInput" placeholder="Filter table (title / author / isbn)" style="width:50%; " />
-        <table id="booksTable" aria-label="Books table">
+        <!-- Logout Button -->
+        <a href="index.html" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg font-semibold text-white">
+          Logout
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="menu-btn" class="md:hidden text-3xl focus:outline-none">
+        <span class="material-icons">menu</span>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden bg-blue-800 text-white flex flex-col space-y-2 py-4 px-6">
+      <a href="Librarian.html" class="flex items-center space-x-2 hover:text-blue-300 transition">
+        <span class="material-icons">dashboard</span><span>Dashboard</span>
+      </a>
+      <a href="search.html" class="flex items-center space-x-2 hover:text-blue-300 transition">
+        <span class="material-icons">menu_book</span><span>Books</span>
+      </a>
+      <a href="LibrarianNotifications.html" class="flex items-center space-x-2 hover:text-blue-300 transition">
+        <span class="material-icons">notifications</span><span>Notifications</span>
+      </a>
+      <a href="LibrarianProfile.html" class="flex items-center space-x-2 hover:text-blue-300 transition">
+        <span class="material-icons">account_circle</span><span>Profile</span>
+      </a>
+      <a href="index.html" class="flex items-center space-x-2 hover:text-blue-300 transition">
+        <span class="material-icons">logout</span><span>Logout</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="flex-grow px-6 py-8">
+    <h2 class="text-3xl font-bold mb-6 text-center">Welcome, Librarian!</h2>
+
+    <div class="grid gap-12 md:grid-cols-2">
+
+      <!-- Add Book Form -->
+      <div class="bg-[#1e2f5b] p-6 rounded-lg shadow-lg">
+        <h3 class="text-xl font-semibold mb-4">Add a New Book</h3>
+        <form id="addBookForm" class="space-y-3">
+          <input type="text" name="title" placeholder="Title" class="w-full px-3 py-2 rounded-lg text-gray-900"
+            required>
+          <input type="text" name="author" placeholder="Author" class="w-full px-3 py-2 rounded-lg text-gray-900"
+            required>
+          <input type="text" name="isbn" placeholder="ISBN" class="w-full px-3 py-2 rounded-lg text-gray-900" required>
+          <input type="number" name="copies" placeholder="Copies available" min="1" value="1"
+            class="w-full px-3 py-2 rounded-lg text-gray-900" required>
+          <button type="submit"
+            class="w-full bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg font-semibold transition">Add Book</button>
+        </form>
+        <div id="addBookFeedback" class="mt-2 text-gray-300 text-sm"></div>
+      </div>
+
+      <!-- Create Student User -->
+      <div class="bg-[#1e2f5b] p-6 rounded-lg shadow-lg">
+        <h3 class="text-xl font-semibold mb-4">Create Student Account</h3>
+        <form id="createUserForm" class="space-y-3">
+          <input type="text" name="first_name" placeholder="First name"
+            class="w-full px-3 py-2 rounded-lg text-gray-900" required>
+          <input type="text" name="last_name" placeholder="Last name" class="w-full px-3 py-2 rounded-lg text-gray-900"
+            required>
+          <input type="email" name="email" placeholder="Email" class="w-full px-3 py-2 rounded-lg text-gray-900"
+            required>
+          <input type="password" name="password" placeholder="Password"
+            class="w-full px-3 py-2 rounded-lg text-gray-900" required>
+          <button type="submit"
+            class="w-full bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg font-semibold transition">Create
+            Student</button>
+        </form>
+        <div id="createUserFeedback" class="mt-2 text-gray-300 text-sm"></div>
+      </div>
+
+    </div>
+
+    <!-- Books Table -->
+    <div class="mt-12 bg-[#1e2f5b] p-6 rounded-lg shadow-lg">
+      <h3 class="text-xl font-semibold mb-4">Available Books</h3>
+      <input id="filterInput" placeholder="Filter table (title / author / ISBN)"
+        class="w-full md:w-1/2 px-3 py-2 rounded-lg text-gray-900 mb-4">
+
+      <div class="overflow-x-auto">
+        <table id="booksTable" class="w-full table-auto border-collapse border border-gray-700">
           <thead>
-            <tr>
-              <th>Title</th>
-              <th>Author</th>
-              <th>ISBN</th>
-              <th>Copies</th>
-              <th class="right">Actions</th>
+            <tr class="bg-blue-800">
+              <th class="border border-gray-700 px-3 py-2">Title</th>
+              <th class="border border-gray-700 px-3 py-2">Author</th>
+              <th class="border border-gray-700 px-3 py-2">ISBN</th>
+              <th class="border border-gray-700 px-3 py-2">Copies</th>
+              <th class="border border-gray-700 px-3 py-2">Actions</th>
             </tr>
-          </thead>      
+          </thead>
+          <tbody>
+            <!-- Dynamic rows will be inserted here via JS -->
+          </tbody>
         </table>
       </div>
     </div>
 
-    <a href="index.html" class="button" style="margin-top:1rem;">Logout</a>
-  </div>
+  </main>
 
-  <br>
-  <br> 
-  <br>
-  <br>
-  <br>
-  
-  <footer style="text-align:center; padding:1rem; margin-top:1rem;">
+  <!-- Footer -->
+  <footer class="bg-[#0a1f44] text-gray-300 py-6 text-center">
     <p>&copy; 2025 Richfield Library System | Knowledge Nexus</p>
   </footer>
 
-  <script src="script.js"></script>
+  <!-- Scripts -->
+  <script>
+    const menuBtn = document.getElementById("menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    menuBtn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+  </script>
+
 </body>
+
 </html>

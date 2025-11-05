@@ -1,32 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <title>Richfield Library System</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Admin Dashboard - Richfield Library System</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    .icon {
+      width: 48px;
+      /* increased icon size */
+      height: 48px;
+    }
+
+    .clickable {
+      cursor: pointer;
+    }
+  </style>
 </head>
-<body>
-  <header>
-    <div class="header-left">
-      <img src="" alt="Richfield Library Logo" class="logo">
-      <h1>Richfield Library System</h1>
+
+<body class="bg-[#0a1f44] text-white flex flex-col min-h-screen">
+
+  <!-- Navbar -->
+  <nav class="bg-blue-900 text-white shadow-lg">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <!-- Logo -->
+      <div class="flex items-center space-x-3">
+        <img src="https://cdn.briefly.co.za/images/720/6b4cbb0e53c53f0a.jpeg?v=1" alt="Richfield Library Logo"
+          class="w-12 h-12 object-contain">
+        <h1 class="text-2xl font-bold">Richfield Library System</h1>
+      </div>
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex space-x-6 items-center">
+        <a href="Admin.html" class="flex flex-col items-center hover:bg-blue-800 px-3 py-2 rounded-lg transition">
+          <span class="material-icons">dashboard</span>
+          <span class="text-sm mt-1">Dashboard</span>
+        </a>
+        <a href="ManageUsers.html" class="flex flex-col items-center hover:bg-blue-800 px-3 py-2 rounded-lg transition">
+          <span class="material-icons">group</span>
+          <span class="text-sm mt-1">Users</span>
+        </a>
+        <a href="ManageBooks.html" class="flex flex-col items-center hover:bg-blue-800 px-3 py-2 rounded-lg transition">
+          <span class="material-icons">menu_book</span>
+          <span class="text-sm mt-1">Books</span>
+        </a>
+        <a href="Analytics.html" class="flex flex-col items-center hover:bg-blue-800 px-3 py-2 rounded-lg transition">
+          <span class="material-icons">analytics</span>
+          <span class="text-sm mt-1">Analytics</span>
+        </a>
+        <a href="AdminProfile.html"
+          class="flex flex-col items-center hover:bg-blue-800 px-3 py-2 rounded-lg transition">
+          <span class="material-icons">account_circle</span>
+          <span class="text-sm mt-1">Profile</span>
+        </a>
+        <a href="index.html" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg font-semibold text-white">
+          Logout
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="menu-btn" class="md:hidden text-3xl focus:outline-none">
+        <span class="material-icons">menu</span>
+      </button>
     </div>
 
-    <div class="header-right">
-      <input type="text" placeholder="Search users..." class="search-bar">
-      <a href="index.html" class="button">Logout</a>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden bg-blue-800 text-white flex flex-col space-y-2 py-4 px-6">
+      <a href="AdminDashboard.html" class="flex items-center space-x-2 hover:text-blue-300 transition">
+        <span class="material-icons">dashboard</span><span>Dashboard</span>
+      </a>
+      <a href="ManageUsers.html" class="flex items-center space-x-2 hover:text-blue-300 transition">
+        <span class="material-icons">group</span><span>Users</span>
+      </a>
+      <a href="ManageBooks.html" class="flex items-center space-x-2 hover:text-blue-300 transition">
+        <span class="material-icons">menu_book</span><span>Books</span>
+      </a>
+      <a href="Analytics.html" class="flex items-center space-x-2 hover:text-blue-300 transition">
+        <span class="material-icons">analytics</span><span>Analytics</span>
+      </a>
+      <a href="AdminProfile.html" class="flex items-center space-x-2 hover:text-blue-300 transition">
+        <span class="material-icons">account_circle</span><span>Profile</span>
+      </a>
+      <a href="index.html" class="flex items-center space-x-2 hover:text-blue-300 transition">
+        <span class="material-icons">logout</span><span>Logout</span>
+      </a>
     </div>
-  </header>
+  </nav>
 
-  <div class="container">
-    <h2>Welcome! You now have Admin-level access.!</h2>
-    <a href="index.html" class="button">Logout</a>
-  </div>
+  <!-- Welcome Section -->
+  <section class="px-6 py-6 text-center">
+    <h2 class="text-3xl font-bold mb-2">Welcome, Admin!</h2>
+    <p class="text-gray-300 text-lg">Manage users, librarians, library resources, and oversee all operations.</p>
+  </section>
 
-  <footer>
+  <!-- Dashboard Features -->
+  <section class="px-6 mb-12 flex flex-wrap justify-center gap-6 text-center">
+    <div onclick="location.href='ManageUsers.html'"
+      class="feat p-8 w-64 bg-[#1e2f5b] rounded-xl shadow-lg hover:scale-105 transform transition clickable flex flex-col items-center">
+      <div class="icon text-5xl mb-4">👤</div>
+      <h4 class="font-semibold mb-2 text-lg">Manage Users</h4>
+      <p class="text-gray-300 text-base">Edit or remove students and librarians.</p>
+    </div>
+
+    <div onclick="location.href='ManageBooks.html'"
+      class="feat p-8 w-64 bg-[#1e2f5b] rounded-xl shadow-lg hover:scale-105 transform transition clickable flex flex-col items-center">
+      <div class="icon text-5xl mb-4">📚</div>
+      <h4 class="font-semibold mb-2 text-lg">Manage Books</h4>
+      <p class="text-gray-300 text-base">Oversee the library catalog and book inventory.</p>
+    </div>
+
+    <div onclick="location.href='analytics.html'"
+      class="feat p-8 w-64 bg-[#1e2f5b] rounded-xl shadow-lg hover:scale-105 transform transition clickable flex flex-col items-center">
+      <div class="icon text-5xl mb-4">📊</div>
+      <h4 class="font-semibold mb-2 text-lg">Analytics</h4>
+      <p class="text-gray-300 text-base">View library usage statistics and reports.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-[#0a1f44] text-gray-300 py-4 text-center mt-auto">
     <p>&copy; 2025 Richfield Library System | Knowledge Nexus</p>
   </footer>
 
-  <script src="script.js"></script>
+  <!-- Script for Mobile Menu -->
+  <script>
+    const menuBtn = document.getElementById("menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    menuBtn?.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+  </script>
+
 </body>
+
 </html>

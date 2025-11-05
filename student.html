@@ -1,84 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <title>Richfield Library System</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Dashboard - Richfield University Library</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
-<body>
-  <header>
-    <div class="header-left">
-      <img src="" alt="Richfield Library Logo" class="logo">
-      <h1>Richfield Library System</h1>
+
+<body class="bg-[#0a1f44] text-white flex flex-col min-h-screen">
+
+  <!-- Navbar -->
+  <nav class="bg-blue-900 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16 items-center">
+        <!-- Left: Logo -->
+        <div class="flex items-center space-x-3">
+          <img src="https://cdn.briefly.co.za/images/720/6b4cbb0e53c53f0a.jpeg?v=1" alt="Richfield Library Logo"
+            class="w-12 h-12 object-contain">
+          <span class="text-lg font-bold">Richfield University Library</span>
+        </div>
+
+        <!-- Center: Nav Icons (Desktop) -->
+        <div class="hidden md:flex space-x-6 text-white">
+          <!-- Dashboard -->
+          <a href="student.html" class="flex flex-col items-center hover:bg-blue-800 px-3 py-1 rounded-lg transition">
+            <span class="material-icons">dashboard</span>
+            <span class="text-xs mt-1">Dashboard</span>
+          </a>
+
+          <!-- Books -->
+          <a href="search.html" class="flex flex-col items-center hover:bg-blue-800 px-3 py-1 rounded-lg transition">
+            <span class="material-icons">menu_book</span>
+            <span class="text-xs mt-1">Books</span>
+          </a>
+
+          <!-- Notifications -->
+          <a href="StudentNotification.html"
+            class="flex flex-col items-center hover:bg-blue-800 px-3 py-1 rounded-lg transition">
+            <span class="material-icons">notifications</span>
+            <span class="text-xs mt-1">Notifications</span>
+          </a>
+
+          <!-- Profile -->
+          <a href="StudentProfile.html"
+            class="flex flex-col items-center hover:bg-blue-800 px-3 py-1 rounded-lg transition">
+            <span class="material-icons">account_circle</span>
+            <span class="text-xs mt-1">Profile</span>
+          </a>
+        </div>
+
+        <!-- Right: Logout Button -->
+        <div class="hidden md:flex items-center">
+          <a href="index.html"
+            class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg font-semibold transition">
+            Logout
+          </a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="menu-btn" class="md:hidden text-white text-3xl focus:outline-none">
+          <span class="material-icons">menu</span>
+        </button>
+      </div>
     </div>
 
-    <div class="header-right">
-      <input type="text" placeholder="Search for books..." class="search-bar">
-      <a href="index.html" class="button">Logout</a>
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="hidden bg-blue-800 md:hidden">
+      <a href="student.html" class="block px-4 py-3 hover:bg-blue-700 flex items-center space-x-2">
+        <span class="material-icons">dashboard</span> <span>Dashboard</span>
+      </a>
+      <a href="search.html" class="block px-4 py-3 hover:bg-blue-700 flex items-center space-x-2">
+        <span class="material-icons">menu_book</span> <span>Books</span>
+      </a>
+      <a href="StudentNotification.html" class="block px-4 py-3 hover:bg-blue-700 flex items-center space-x-2">
+        <span class="material-icons">notifications</span> <span>Notifications</span>
+      </a>
+      <a href="StudentProfile.html" class="block px-4 py-3 hover:bg-blue-700 flex items-center space-x-2">
+        <span class="material-icons">account_circle</span> <span>Profile</span>
+      </a>
+      <a href="index.html" class="block px-4 py-3 hover:bg-blue-700 flex items-center space-x-2">
+        <span class="material-icons">logout</span> <span>Logout</span>
+      </a>
     </div>
-  </header>
+  </nav>
 
-  <div class="container">
-    <h2>Welcome aboard!!</h2>
-  </div>
+  <!-- Main Content -->
+  <section class="flex-grow px-6 py-10 max-w-5xl mx-auto">
+    <h2 class="text-3xl font-bold mb-4">Welcome, Student!</h2>
+    <p class="text-gray-300 mb-6">Access your books, notifications, and profile from the navbar above.</p>
 
-  <div class="slideshow">
-    <div class="slides">
-      <img src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170" class="active" alt="Slide 1">
-      <img src="https://images.unsplash.com/photo-1517770413964-df8ca61194a6?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2070" alt="Slide 2">
-      <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1198" alt="Slide 3">
-      <img src="https://images.unsplash.com/photo-1513185041617-8ab03f83d6c5?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170" alt="Slide 4">
-      <img src="https://www.istockphoto.com/photo/a-librarys-quiet-embrace-rows-of-books-lining-wooden-shelves-gm2167740181-587791337?utm_source=unsplash&utm_medium=affiliate&utm_campaign=srp_photos_bottom&utm_content=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fbooks&utm_term=books%3A%3Alayout-below-fold-units-2%3Acontrol" alt="Slide 5">
+    <!-- Example Cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="bg-[#1e2f5b] p-6 rounded-lg shadow-lg">
+        <span class="material-icons text-4xl mb-3">menu_book</span>
+        <h3 class="text-xl font-bold mb-2">My Books</h3>
+        <p class="text-gray-300">View all books you have borrowed and search the library collection.</p>
+      </div>
+
+      <div class="bg-[#1e2f5b] p-6 rounded-lg shadow-lg">
+        <span class="material-icons text-4xl mb-3">notifications</span>
+        <h3 class="text-xl font-bold mb-2">Notifications</h3>
+        <p class="text-gray-300">Check due dates, library announcements, and other alerts.</p>
+      </div>
+
+      <div class="bg-[#1e2f5b] p-6 rounded-lg shadow-lg">
+        <span class="material-icons text-4xl mb-3">account_circle</span>
+        <h3 class="text-xl font-bold mb-2">Profile</h3>
+        <p class="text-gray-300">Update your personal information and manage your account settings.</p>
+      </div>
     </div>
-    
-  <div class="buttons">
-    <button id="prev">❮</button>
-    <button id="next">❯</button>
-  </div>
+  </section>
 
-    <main>
-    <section>
-      <h3 class="section-title">Most Popular</h3>
-      <div class="book-grid">
-        <div class="card"><img src="https://images1.penguinrandomhouse.com/cover/9780593548066" alt=""></div>
-        <div class="card"><img src="https://images2.penguinrandomhouse.com/cover/9780593490716" alt=""></div>
-        <div class="card"><img src="https://images1.penguinrandomhouse.com/cover/9780593133477" alt=""></div>
-        <div class="card"><img src="https://images2.penguinrandomhouse.com/cover/9780593310854" alt=""></div>
-        <div class="card"><img src="https://images1.penguinrandomhouse.com/cover/9780593466490" alt=""></div>
-        <div class="card"><img src="https://images2.penguinrandomhouse.com/cover/9780593241608" alt=""></div>
-        <div class="card"><img src="https://images2.penguinrandomhouse.com/cover/9781984820419" alt=""></div>
-        <div class="card"><img src="https://images1.penguinrandomhouse.com/cover/9780593230985" alt=""></div>
-      </div>
-    </section>
-
-    <section class="features" aria-label="Quick links">
-      <div class="feat">
-        <div class="icon">📚</div>
-        <h4>Ask a Librarian</h4>
-        <p>Get help locating items and research assistance.</p>
-      </div>
-      <div class="feat">
-        <div class="icon">💡</div>
-        <h4>Innovations</h4>
-        <p>Discover new services and digital resources.</p>
-      </div>
-      <div class="feat">
-        <div class="icon">📝</div>
-        <h4>Join the Library</h4>
-        <p>Register and start borrowing today.</p>
-      </div>
-      <div class="feat">
-        <div class="icon">🔎</div>
-        <h4>Help</h4>
-        <p>See FAQs and borrowing policies.</p>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; 2025 Richfield Library System | Knowledge Nexus</p>
+  <!-- Footer -->
+  <footer class="bg-[#0a1f44] text-gray-400 py-4 text-center mt-auto">
+    <p>&copy; 2025 Richfield University Library | Empowering Knowledge</p>
   </footer>
 
-  <script src="script.js"></script>
+  <!-- JS Scripts -->
+  <script>
+    // Mobile menu toggle
+    const menuBtn = document.getElementById("menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+    menuBtn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+  </script>
 </body>
+
 </html>

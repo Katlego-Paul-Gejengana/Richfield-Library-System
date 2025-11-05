@@ -1,49 +1,80 @@
+// =========================
+// REGISTER FORM HANDLER
+// =========================
+const registerForm = document.getElementById("registerForm");
+if (registerForm) {
+  registerForm.addEventListener("submit", (event) => {
+    event.preventDefault();
 
-// Login Page
-document.addEventListener("DOMContentLoaded", () => {
-  const loginForm = document.getElementById("loginForm");
+    const fullname = document.getElementById("fullname").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const role = document.getElementById("role").value;
+    const password = document.getElementById("password").value.trim();
 
-  if (loginForm) {
-    loginForm.addEventListener("submit", function (event) {
-      event.preventDefault();
+    if (!fullname || !email || !role || !password) {
+      alert("Please fill in all required fields.");
+      return;
+    }
 
-      const username = document.getElementById("username").value.trim().toLowerCase();
-      const password = document.getElementById("password").value.trim();
+    // Store role for later use
+    localStorage.setItem("userRole", role);
 
-    
-      if (username === "librarian") {
-        window.location.href = "librarian.html";
-      } else if (username === "admin" || username === "administrator") {
-        window.location.href = "admin.html";
-      } else if (username === "student") {
+    // Redirect based on role
+    switch (role) {
+      case "student":
+        alert(`Welcome ${fullname}! Redirecting to Student Dashboard...`);
         window.location.href = "student.html";
-      } else {
-        alert("Invalid username. Please try librarian, admin, or student.");
-      }
-    });
-  }
-});
+        break;
+      case "librarian":
+        alert(`Welcome ${fullname}! Redirecting to Librarian Dashboard...`);
+        window.location.href = "librarian.html";
+        break;
+      case "admin":
+        alert(`Welcome ${fullname}! Redirecting to Admin Dashboard...`);
+        window.location.href = "admin.html";
+        break;
+      default:
+        alert("Invalid role selected. Please try again.");
+    }
+  });
+}
 
-// Slideshow
-const slides = document.querySelectorAll('.slides img');
-let index = 0;
+// =========================
+// LOGIN FORM HANDLER
+// =========================
+const loginForm = document.getElementById("loginForm");
+if (loginForm) {
+  loginForm.addEventListener("submit", (event) => {
+    event.preventDefault();
 
-document.getElementById('next').addEventListener('click', () => {
-slides[index].classList.remove('active');
-index = (index + 1) % slides.length;
-slides[index].classList.add('active');
-});
+    const email = document.getElementById("email")?.value.trim();
+    const password = document.getElementById("password")?.value.trim();
+    const role = document.getElementById("role")?.value;
 
-document.getElementById('prev').addEventListener('click', () => {
-slides[index].classList.remove('active');
-index = (index - 1 + slides.length) % slides.length;
-slides[index].classList.add('active');
-});
+    if (!email || !password || !role) {
+      alert("Please fill in all login fields.");
+      return;
+    }
 
-// Auto play every 3 seconds
-setInterval(() => {
-slides[index].classList.remove('active');
-index = (index + 1) % slides.length;
-slides[index].classList.add('active');
-}, 3000);
+    // Store role for later use
+    localStorage.setItem("userRole", role);
 
+    // Redirect based on role
+    switch (role) {
+      case "student":
+        alert(`Welcome back! Redirecting to Student Dashboard...`);
+        window.location.href = "student.html";
+        break;
+      case "librarian":
+        alert(`Welcome back! Redirecting to Librarian Dashboard...`);
+        window.location.href = "librarian.html";
+        break;
+      case "admin":
+        alert(`Welcome back! Redirecting to Admin Dashboard...`);
+        window.location.href = "admin.html";
+        break;
+      default:
+        alert("Invalid role. Please try again.");
+    }
+  });
+}
